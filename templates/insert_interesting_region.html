@@ -1,0 +1,75 @@
+{% extends "template.html"%}
+
+
+
+{% block main_container %}
+
+<div class="row" style="text-align: center; margin-top: 15%; margin-bottom: 15%;">
+    <form class="row">
+        <h1>{{user_dict.user_name}}님,</h1>
+        <h1>어느 곳에 가고 싶으세요?</h1>
+
+        <div style="font-size: 30px; padding: 10%;">
+            <div>
+                <label for="seoul">서울</label>
+                <input type="checkbox" name="region" id="seoul">
+            </div>
+            <div>
+                <label for="incheon">인천</label>
+                <input type="checkbox" name="region" id="incheon">
+            </div>
+            <div>
+                <label for="gangwon">강원</label>
+                <input type="checkbox" name="region" id="gangwon">
+            </div>
+            <div>
+                <label for="busan">부산</label>
+                <input type="checkbox" name="region" id="busan">
+            </div>
+            <div>
+                <label for="jeju">제주</label>
+                <input type="checkbox" name="region" id="jeju">
+            </div>
+        </div>
+    </form>
+
+    <div class="row" style="text-align: center; margin-top: 15%; margin-bottom: 15%;">
+        <form class="row">
+            <h1>어느 여행 컨셉을 원하세요?</h1>
+            <br>
+            <br>
+            <br>
+            <div style="font-size: 30px; padding: 10%;">
+                <div>
+                    <label for="nature">자연관광</label>
+                    <input type="checkbox" name="attraction" id="nature">
+                </div>
+                <div>
+                    <label for="rest">휴양관광</label>
+                    <input type="checkbox" name="attraction" id="rest">
+                </div>
+                <div>
+                    <label for="activity">체험관광</label>
+                    <input type="checkbox" name="attraction" id="activity">
+                </div>
+                <div>
+                    <label for="culture">문화시설</label>
+                    <input type="checkbox" name="attraction" id="culture">
+                </div>
+                <div>
+                    <label for="history">역사관광</label>
+                    <input type="checkbox" name="attraction" id="history">
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div style="padding: 10%;">
+                <button class="btn btn-primary" type="submit" formaction="/login" formmethod="get">next</button>
+                <button class="btn btn-light" type="reset">reset</button>
+            </div>
+        </form>
+
+    </div>
+
+{% endblock %}

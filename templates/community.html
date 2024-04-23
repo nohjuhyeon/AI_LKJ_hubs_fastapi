@@ -1,0 +1,132 @@
+{% extends "template.html"%}
+
+
+
+{% block main_container %}
+<style>
+     .container.p-5 {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .community-content {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        margin: 10px 0;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .community-content.border {
+        border: none;
+        margin-bottom: 15px;
+    }
+
+    .search-button {
+        width: 50%;
+        margin-left: 25%;
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    h1, h2, h6 {
+        margin: 0;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h6 {
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        border-radius: 12px;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+
+    /* .community-content.font-weight-bold {
+        font-weight: bold;
+    } */
+</style>
+<div class="container-fluid mt-5 mb-5">
+    <h1 class="text-center mb-4 pb-2 border-bottom">Community</h1>
+
+<div class="container p-5 my-3 border">
+    <div class="row justify-content-between">
+        <h2 class="col-md-6 border community-content" >여행지 : </h2>
+        <div class="col-md-5">
+            <div class="row justify-content-end">
+                <h6 class="col-md-5 border community-content">작성자 : </h6>
+                <h6 class="col-md-5 border community-content">좋아요 수 : </h6>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <h2 class="col-md-6 border community-content" >여행 컨셉 : </h2>
+        <h2 class="col-md-5 border community-content" >여행 날짜 : </h2>
+    </div>
+    <div class="row ">
+        <h2 class="community-content" >여행기 한 줄 요약 : </h2>
+        <button type="submit" class="btn btn-primary search-button">보기</button>
+    </div>
+</div>
+<div class="container p-5 my-4 border">
+    <div class="row justify-content-between">
+        <h2 class="col-md-6 border community-content" >여행지 : </h2>
+        <div class="col-md-5">
+            <div class="row justify-content-end">
+                <h6 class="col-md-5 border community-content">작성자 : </h6>
+                <h6 class="col-md-5 border community-content">좋아요 수 : </h6>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <h2 class="col-md-6 border community-content" >여행 컨셉 : </h2>
+        <h2 class="col-md-5 border community-content" >여행 날짜 : </h2>
+    </div>
+    <div class="row">
+        <h2 class="community-content" >여행기 한 줄 요약 : </h2>
+        <button type="submit" class="btn btn-primary search-button">보기</button>
+    </div>
+</div>
+<div class="container p-5 my-4 border">
+    <div class="row justify-content-between">
+        <h2 class="col-md-6 border community-content" >여행지 : </h2>
+        <div class="col-md-5">
+            <div class="row justify-content-end">
+                <h6 class="col-md-5 border  community-content">작성자 : </h6>
+                <h6 class="col-md-5 border community-content">좋아요 수 : </h6>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <h2 class="col-md-6 border community-content">여행 컨셉 : </h2>
+        <h2 class="col-md-5 border community-content" >여행 날짜 : </h2>
+    </div>
+    <div class="row">
+        <h2 class="community-content" >여행기 한 줄 요약 : </h2>
+        <button type="submit" class="btn btn-primary search-button">보기</button>
+    </div>
+</div>
+{% endblock %}

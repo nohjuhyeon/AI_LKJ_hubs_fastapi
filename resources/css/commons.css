@@ -1,0 +1,26 @@
+.trip_plan_button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+.trip_plan_list {
+    margin-top: 10px;
+}
+
+.scrollable-box-list {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.scrollable-box-search {
+    max-height: 220px;
+    overflow-y: scroll;
+  }
+
+  .custom-list-group {
+    font-size: 30px;
+  }
+
+  .community-content {
+    margin: 5px;
+  }

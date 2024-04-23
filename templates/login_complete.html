@@ -1,0 +1,33 @@
+{% extends "template.html"%}
+{%block main_container%}
+
+
+
+<div class="row" style="text-align: center; margin-top: 20%; margin-bottom: 20%;">
+    <h1>{{user_dict.user_name}}님, 환영합니다!</h1>
+    <form class="row justify-content-center">
+        <div class="col-md-2"></div>
+        <div class="row col-md-8">
+        <div class="col-md-4 ">
+            <button class="themed-grid-col btn btn-primary" style="font-size: 15px ; height: 100px; width: 150px;" 
+                formaction="/" method="post">메인 화면으로 이동</button>
+        </div>
+        <br>
+        <div class="col-md-4">
+            <button class=" themed-grid-col btn btn-primary" style="font-size: 15px ; height: 100px;width: 150px;"
+                formaction="/mypage/" method="post">마이 페이지로 이동</button>
+        </div>
+        <br>
+        <div class="col-md-4">
+            <button class="themed-grid-col btn btn-primary" style="font-size: 15px ; height: 100px;width: 150px;"
+                formaction="/community/" method="post">여행기로 이동</button>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+        <!-- <div>
+            <button class="col-md-3 themed-grid-col btn btn-primary" style="font-size: 15px ; height: 100px;"
+                formaction="" method="post">예약내역</button>
+        </div> -->
+    </form>
+</div>
+{%endblock%}

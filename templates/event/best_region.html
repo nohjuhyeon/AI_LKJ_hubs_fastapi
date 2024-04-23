@@ -1,0 +1,467 @@
+{% extends "template.html"%}
+
+{% block main_container %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #F1F4FD;
+        }
+
+        .container {
+            min-width: 1200px;
+            width: 95%;
+            position: relative;
+        }
+
+        .image-list>a .screen {
+            position: relative;
+            overflow: hidden;
+            flex-wrap: nowrap;
+            /* 수정 */
+        }
+
+        .image-list>a .screen .top {
+            position: absolute;
+            bottom: 150%;
+            left: 30px;
+            z-index: 2;
+            color: #fff;
+            font-size: 26px;
+            font-weight: 900;
+            transition: all .45s;
+        }
+
+        .image-list>a:hover .top {
+            bottom: 52%;
+        }
+
+        .image-list>a .screen .bottom {
+            position: absolute;
+            top: 150%;
+            left: 30px;
+            z-index: 2;
+            color: #fff;
+            font-size: 12px;
+            transition: all .45s;
+        }
+
+        .image-list>a:hover .bottom {
+            top: 52%;
+        }
+
+        .image-list>a .screen::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .5);
+            z-index: 1;
+            opacity: 0;
+            transition: all .35s;
+        }
+
+        .image-list>a:hover .screen::after {
+            opacity: 1;
+        }
+
+        .slider-wrapper {
+            position: relative;
+        }
+
+        .image-item {
+            position: relative;
+        }
+
+        .slider-wrapper .slide-button {
+            position: absolute;
+            top: 50%;
+            height: 50px;
+            width: 50px;
+            color: #fff;
+            border: none;
+            outline: none;
+            background: #000;
+            font: 2.2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            /*  z-index는 CSS 속성 중 하나로, 웹 페이지의 요소들 사이에 쌓임 순서 (z축 순서)를 설정하는 속성입니다. 값이 클수록 사용자에게 가까운 위치에 표시 */
+        }
+
+        .slider-wrapper .slide-button:hover {
+            background: #444;
+        }
+
+        .slider-wrapper .slide-button#prev-slide {
+            left: -20px;
+            display: none;
+        }
+
+        .slider-wrapper .slide-button#next-slide {
+            right: -20px;
+        }
+
+        .slider-wrapper .image-list {
+            display: grid;
+            gap: 18px;
+            font-size: 0;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            grid-template-columns: repeat(10, 1fr);
+            cursor: pointer;
+        }
+
+        .slider-wrapper .image-list::-webkit-scrollbar {
+            display: none;
+
+        }
+
+        .slider-wrapper .image-list .image-item {
+            width: 325px;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .container .slider-scrollbar {
+            height: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-scrollbar .scrollbar-track {
+            height: 2px;
+            width: 100%;
+            background: #ccc;
+            position: relative;
+            border-radius: 4px;
+        }
+
+        .slider-scrollbar:hover .scrollbar-track {
+            height: 4px;
+        }
+
+        .slider-scrollbar .scrollbar-thumb {
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            background: #000;
+            border-radius: inherit;
+            cursor: grab;
+        }
+
+        .slider-scrollbar .scrollbar-thumb:active {
+            cursor: grabbing;
+            height: 8px;
+            top: -2px;
+        }
+
+        .slider-scrollbar .scrollbar-thumb::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -10px;
+            bottom: -10px;
+        }
+
+        /* Style for mobile and tablets */
+        @media (max-width: 1023px) {
+            .slider-wrapper .slide-button {
+                display: none !important;
+            }
+
+            .slider-wrapper .image-list {
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+
+            .slider-wrapper .image-list .image-item {
+                width: 280px;
+                height: 380px;
+            }
+
+            .slider-scrollbar .scrollbar-thumb {
+                width: 20%;
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="ml-3 mb-2 mt-2"><h3>< {{std_month}}월 추천 여행지 ></h3></div>
+        <div class="container-fluid">
+            <form class="d-flex" role="search">
+                <select class="form-select me-2" name="month" aria-label="월별 선택" style="width: 180px;">
+                    <option selected>월별 선택</option>
+                    <option value="1">1월</option>
+                    <option value="2">2월</option>
+                    <option value="3">3월</option>
+                    <option value="4">4월</option>
+                    <option value="5">5월</option>
+                    <option value="6">6월</option>
+                    <option value="7">7월</option>
+                    <option value="8">8월</option>
+                    <option value="9">9월</option>
+                    <option value="10">10월</option>
+                    <option value="11">11월</option>
+                    <option value="12">12월</option>
+                </select>
+                <button class="btn btn-outline-success" formaction="/event/best_region" formmethod="get"
+                    type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="slider-wrapper">
+            <button id="prev-slide" class="slide-button material-symbols-rounded">&lt;</button>
+            <div class="image-list">
+                <a href="/detailed_region/info_Seoul">
+                    <div class="screen">
+                        <div class="top">서울</div>
+                        <div class="bottom">자세히 보기</div>
+                        <img src='/images/pictures1.jpg' alt="img-1" class="image-item">
+                    </div>
+                </a>
+                <a href="/detailed_region/info_Incheon">
+                    <div class="screen">
+                        <div class="top">경기</div>
+                        <div class="bottom">자세히 보기</div>
+                        <img src="/images/경기.jpg" alt="img-5" class="image-item">
+                    </div>
+                </a>
+                <a href="/detailed_region/info_Incheon">
+                    <div class="screen">
+                        <div class="top">인천</div>
+                        <div class="bottom">자세히 보기</div>
+                        <img src="/images/pictures5.jpg" alt="img-5" class="image-item">
+                    </div>
+                </a>
+                <a href="/detailed_region/info_Gangwondo">
+                    <div class="screen">
+                        <div class="top">강원</div>
+                        <div class="bottom">자세히 보기</div>
+                        <img src="/images/pictures3.jpg" alt="img-3" class="image-item">
+                    </div>
+                </a>
+                <a href="/detailed_region/info_Busan">
+                    <div class="screen">
+                        <div class="top">경남</div>
+                        <div class="bottom">자세히 보기</div>
+                        <img src="/images/pictures2.jpg" alt="img-2" class="image-item">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="screen">
+                        <div class="top">경북</div>
+                        <div class="bottom">Coming Soon</div>
+                        <img src="/images/pictures8.jpg" alt="img-6" class="image-item">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="screen">
+                        <div class="top">광주</div>
+                        <div class="bottom">Coming Soon</div>
+                        <img src="/images/광주.jpg" alt="img-6" class="image-item">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="screen">
+                        <div class="top">대구</div>
+                        <div class="bottom">Coming Soon</div>
+                        <img src="/images/대구.jpg" alt="img-6" class="image-item">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="screen">
+                        <div class="top">대전</div>
+                        <div class="bottom">Coming Soon</div>
+                        <img src="/images/대전.jpg" alt="img-6" class="image-item">
+                    </div>
+                </a>
+                <a href="/detailed_region/info_Busan">
+                    <div class="screen">
+                        <div class="top">부산</div>
+                        <div class="bottom">자세히 보기</div>
+                        <img src="/images/pictures2.jpg" alt="img-2" class="image-item">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="screen">
+                        <div class="top">세종</div>
+                        <div class="bottom">Coming Soon</div>
+                        <img src="/images/세종.jpg" alt="img-7" class="image-item">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="screen">
+                        <div class="top">울산</div>
+                        <div class="bottom">Coming Soon</div>
+                        <img src="/images/울산.jpg" alt="img-8" class="image-item">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="screen">
+                        <div class="top">전남</div>
+                        <div class="bottom">Coming Soon</div>
+                        <img src="/images/전남.jpg" alt="img-8" class="image-item">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="screen">
+                        <div class="top">전북</div>
+                        <div class="bottom">Coming Soon</div>
+                        <img src="/images/pictures7.jpg" alt="img-8" class="image-item">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="screen">
+                        <div class="top">충남</div>
+                        <div class="bottom">Coming Soon</div>
+                        <img src="/images/pictures9.jpg" alt="img-9" class="image-item">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="screen">
+                        <div class="top">충북</div>
+                        <div class="bottom">Coming Soon</div>
+                        <img src="/images/충주.jpg" alt="img-9" class="image-item">
+                    </div>
+                </a>
+                <a href="/detailed_region/info_Jeju">
+                    <div class="screen">
+                        <div class="top">제주</div>
+                        <div class="bottom">자세히 보기</div>
+                        <img src="/images/pictures4.jpg" alt="img-4" class="image-item">
+                    </div>
+                </a>
+
+            </div>
+            <button id="next-slide" class="slide-button material-symbols-rounded">&gt;</button>
+        </div>
+        <div class="slider-scrollbar">
+            <div class="scrollbar-track">
+                <div class="scrollbar-thumb"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const initSlider = () => {
+        const imageList = document.querySelector(".image-list");
+        const slideButtons = document.querySelectorAll(".slide-button");
+        const slideScrollbar = document.querySelector(".container .slider-scrollbar");
+        const scrollbarThumb = slideScrollbar.querySelector(".scrollbar-thumb");
+        const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
+
+        //Handle scrollbar thumb drag
+        scrollbarThumb.addEventListener("mousedown", (e) => {
+            const startX = e.clientX;
+            const thumbPostion = scrollbarThumb.offsetLeft;
+
+            // Update thumb position on mouse move
+            const handleMouseMove = (e) => {
+                const deltaX = e.clientX - startX;
+                const newThumbPosition = thumbPostion + deltaX;
+                const maxThumbPositon = slideScrollbar.getBoundingClientRect().width - scrollbarThumb.offsetWidth;
+
+                const boundedPosition = Math.max(0, Math.min(maxThumbPositon, newThumbPosition));
+                const scrollPosition = (boundedPosition / maxThumbPositon) * maxScrollLeft;
+
+                scrollbarThumb.style.left = `${boundedPosition}px`;
+                imageList.scrollLeft = scrollPosition;
+            }
+
+            // Remove event listeners on mouse up
+            const handleMouseUp = () => {
+                document.removeEventListener("mousemove", handleMouseMove);
+                document.removeEventListener("mouseup", handleMouseUp);
+            }
+
+            // Add event listerner for drag interaction
+            document.addEventListener("mousemove", handleMouseMove);
+            document.addEventListener("mouseup", handleMouseUp);
+        });
+
+        slideButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const direction = button.id === "prev-slide" ? -1 : 1;
+                const scrollAmount = imageList.clientWidth * direction;
+                imageList.scrollBy({ left: scrollAmount, behavior: "smooth" });
+            });
+        });
+
+        const handleSlideButtons = () => {
+            slideButtons[0].style.display = imageList.scrollLeft <= 0 ? "none" : "block";
+            slideButtons[1].style.display = imageList.scrollLeft >= maxScrollLeft ? "none" : "block";
+        }
+
+        // Update scrollbar thumb position based on image scroll
+        const updateScrollThumbPosition = () => {
+            const scrollPostion = imageList.scrollLeft;
+            const thumbPostion = (scrollPostion / maxScrollLeft) * (slideScrollbar.clientWidth - scrollbarThumb.offsetWidth);
+            scrollbarThumb.style.left = `${thumbPostion}px`;
+        }
+        imageList.addEventListener("scroll", () => {
+            handleSlideButtons();
+            updateScrollThumbPosition();
+        });
+    }
+
+    window.addEventListener("load", initSlider);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        var month = urlParams.get('month');
+        if (month) {
+            // 월 값을 사용하여 필요한 처리를 합니다.
+            // 예를 들어, select 요소에서 해당 월을 선택된 상태로 만들 수 있음
+            document.querySelector('select[name="month"]').value = month;
+        }
+    });
+
+    var region_list = JSON.parse('{{ region_list | tojson | safe }}');
+
+    $(document).ready(function () {
+        // 여기에 조건을 설정하여 해당하는 screen만 보이도록 처리
+        $(".image-list .screen").each(function () {
+            var regionName = $(this).find(".top").text();
+            if (!region_list.includes(regionName)) {
+                $(this).parent('a').remove();
+            }
+        });
+    });
+
+</script>
+
+</html>
+
+{% endblock %}

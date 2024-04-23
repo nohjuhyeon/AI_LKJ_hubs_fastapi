@@ -1,0 +1,425 @@
+{% extends "template.html"%}
+
+{% block main_container %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
+
+
+    <style>
+        table {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: auto;
+            margin-top: 15px;
+            padding: 20px;
+            width: 100%;
+            background-color: #e9eff1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* 그림자 효과 */
+            /* 배경색 변경 */
+            color: #333;
+            border-radius: 10px;
+            /* 모서리 둥글게 */
+            max-width: 600px;
+            overflow: hidden;
+            /* 내용이 컨테이너를 넘지 않도록 */
+
+        }
+
+        thead {
+            color: rgb(53, 51, 51);
+            /* 텍스트 색상 */
+        }
+
+        th,
+        td {
+            text-align: center;
+            /* 텍스트 가운데 정렬 */
+            padding: 20px;
+            /* 안쪽 여백 */
+            border-top: 1px solid #f0f0f0;
+            /* 상단 경계선 스타일 */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+
+        .carousel-inner {
+            padding: 1em;
+        }
+
+        .card {
+            margin: 0 0.5em;
+            box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+            border: none;
+            height: 35em;
+            width: 340px; /* 가로 크기 */
+            height: 560px; /* 세로 크기 */
+        }
+
+        .card_second {
+            margin: 0 0.5em;
+            box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+            border: none;
+            height: 35em;
+            width: 340px; /* 가로 크기 */
+            height: 600px; /* 세로 크기 */
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            background-color: #e1e1e1;
+            width: 6vh;
+            height: 6vh;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (min-width: 768px) {
+            .carousel-item {
+                margin-right: 0;
+                flex: 0 0 33.333333%;
+                display: block;
+            }
+
+            .carousel-inner {
+                display: flex;
+            }
+        }
+
+        .card .img-wrapper {
+            max-width: 100%;
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card img {
+            max-height: 100%;
+        }
+
+        .card .card-text {
+            height: 40%;
+
+        }
+
+        .card .card-text1 {
+            height: 10px;
+
+        }
+
+        .card .card-text2 {
+            height: 10px;
+
+        }
+
+        .card .card-text3 {
+            height: 10px;
+
+        }
+
+        .card .card-text4 {
+            height: 10px;
+
+        }
+
+        .card .card_num {
+            color: rgb(241, 162, 43);
+            text-shadow: 1px 1px 1px #000;
+        }
+
+        .card_region {
+            color: rgb(245, 171, 183);
+            text-shadow: 1px 1px 1px #000;
+        }
+
+   
+        @media (max-width: 767px) {
+            .card .img-wrapper {
+                height: 17em;
+            }
+        }
+    </style>
+
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>장소</th>
+                <th class="place"></th>
+                <th>온도</th>
+                <th class="temperature"></th>
+                <th>날씨</th>
+                <th class="description"></th>
+                <th id="icon"></th>
+            </tr>
+        </thead>
+    </table>
+    <div>
+
+    </div>
+    <div id="carouselExampleControls1" class="carousel">
+        <h4><strong><서울의 인기 관광지></strong></h4>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="card">
+                    <div class="img-wrapper"><img src="/images/남산타워.jpg" class="d-block w-100" alt="..."> </div>
+                    <div class="card-body">
+                        <h3 class="card_num">No.1</h3>
+                        <h5 class="card-title"><strong>서울 남산타워</strong></h5>
+                        <p class="card-text">서울의 대표적인 랜드마크로, 아름다운 전망과 야경을 즐길 수 있는 곳</p>
+                        <a href="/" class="btn btn-primary">Go to plan</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="card">
+                    <div class="img-wrapper"><img src="/images/명동.jpg" class="d-block w-100" alt="..."> </div>
+                    <div class="card-body">
+                        <h3 class="card_num">No.2</h3>
+                        <h5 class="card-title"><strong>명동</strong></h5>
+                        <p class="card-text">쇼핑과 먹거리의 천국으로, 다양한 상점과 레스토랑이 모여있어 도심 속에서 다채로운 경험</p>
+                        <a href="/" class="btn btn-primary">Go to plan</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="card">
+                    <div class="img-wrapper"><img src="/images/경복궁.jpg" class="d-block w-100" alt="..."> </div>
+                    <div class="card-body">
+                        <h3 class="card_num">No.3</h3>
+                        <h5 class="card-title"><strong>경복궁</strong></h5>
+                        <p class="card-text">조선시대 왕궁으로, 아름다운 전통 한옥 건물과 아차산의 경치를 함께 감상</p>
+                        <a href="/" class="btn btn-primary">Go to plan</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="card">
+                    <div class="img-wrapper"><img src="/images/북촌한옥마을.jpg" class="d-block w-100" alt="..."> </div>
+                    <div class="card-body">
+                        <h3 class="card_num">No.4</h3>
+                        <h5 class="card-title"><strong>북촌 한옥마을</strong></h5>
+                        <p class="card-text">전통적인 한옥 건물과 돌계단 골목으로 이루어져 있으며, 한국의 전통문화를 경험할 수 있는 곳</p>
+                        <a href="/" class="btn btn-primary">Go to view</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls1"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls1"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div id="carouselExampleControls2" class="carousel">
+        <h4><strong><서울의 관광 패키지></strong></h4>
+        <div class="carousel-inner">
+            {% for package in packages %}
+                {% if package.region == '서울/경기' %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <div class="card_second">
+                        <div class="img-wrapper"><img src="{{ package.image }}" class="d-block w-100" alt="..." style = "height: 242px;"> </div>
+                        <div class="card-body">
+                            <h3 class="card_region">{{ package.region }}</h3>
+                            <h5 class="card-title2"><strong>{{ package.title }}</strong></h5>
+                            <p class="card-text1">{{ package.departure_period }}</p>
+                            <p class="card-text2">{{ package.departure_day }}</p>
+                            <p class="card-text3">{{ package.transportation }}</p>
+                            <p class="card-text4">{{ package.price }}</p>
+                            <a href="/" id="a_button" class="btn btn-primary">Go to view</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls2"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        navigator.geolocation.getCurrentPosition(success, fail);
+    });
+
+    const fail = () => {
+        alert("좌표를 받아올 수 없음");
+    };
+
+
+    // API 호출하기
+    const API_KEY = 'be6d770cec6cac757455e9bc1019df48';
+    const success = (position) => {
+        const latitude = 37.566535;
+        const longitude = 126.9779692;
+
+        getWeather(latitude, longitude);
+    }
+
+
+    // 화면에 출력하기
+    const placeSection = document.querySelector('.place');
+    const tempSection = document.querySelector('.temperature');
+    const descSection = document.querySelector('.description');
+
+    // 이미지 가져오기
+    const iconSection = document.querySelector('#icon');
+
+    const getWeather = (lat, lon) => {
+        fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`
+        )
+            .then((response) => {  // json으로 변환
+                return response.json();
+            })
+            .then((json) => {
+                console.log(json);
+                const place = json.name;
+                const temperature = Math.round(json.main.temp); // 반올림
+                const description = json.weather[0].main;
+
+                placeSection.innerHTML = place;
+                tempSection.innerHTML = `${temperature}°C`;
+                descSection.innerHTML = description;
+
+                // 아이콘 업데이트
+                iconSection.className = ''; // 기존 클래스를 초기화
+                switch (description) {
+                    case 'Clear':
+                        iconSection.innerHTML = '<i class="bi bi-brightness-high-fill"></i>';
+                        break;
+                    case 'Clouds':
+                        iconSection.innerHTML = '<i class="bi bi-cloud-fill"></i>';
+                        break;
+                    case 'Rain':
+                        iconSection.innerHTML = '<i class="bi bi-cloud-drizzle-fill"></i>';
+                        break;
+                    case 'Snow':
+                        iconSection.innerHTML = '<i class="bi bi-cloud-snow-fill"></i>';
+                        break;
+                    case 'Wind':
+                        iconSection.innerHTML = '<i class="bi bi-wind"></i>';
+                        break;
+                    default:
+                        iconSection.innerHTML = '<i class="bi bi-clouds"></i>';
+                }
+            })
+
+            // 에러 처리하기
+            .catch((error) => {
+                alert(error);
+            });
+
+    }
+
+
+    const multipleCardCarousel1 = document.querySelector("#carouselExampleControls1");
+    const multipleCardCarousel2 = document.querySelector("#carouselExampleControls2");
+
+    function handleNextClick1() {
+        const carouselInner = document.querySelector("#carouselExampleControls1 .carousel-inner");
+        const carouselWidth = carouselInner.scrollWidth;
+        const cardWidth = document.querySelector("#carouselExampleControls1 .carousel-item").offsetWidth;
+        let scrollPosition = carouselInner.scrollLeft;
+
+        if (scrollPosition < carouselWidth - cardWidth * 4) {
+            scrollPosition += cardWidth;
+            carouselInner.scrollTo({
+                left: scrollPosition,
+                behavior: "smooth"
+            });
+        }
+    }
+
+    function handlePrevClick1() {
+        const carouselInner = document.querySelector("#carouselExampleControls1 .carousel-inner");
+        const cardWidth = document.querySelector("#carouselExampleControls1 .carousel-item").offsetWidth;
+        let scrollPosition = carouselInner.scrollLeft;
+
+        if (scrollPosition > 0) {
+            scrollPosition -= cardWidth;
+            carouselInner.scrollTo({
+                left: scrollPosition,
+                behavior: "smooth"
+            });
+        }
+    }
+
+    function handleNextClick2() {
+        const carouselInner = document.querySelector("#carouselExampleControls2 .carousel-inner");
+        const carouselWidth = carouselInner.scrollWidth;
+        const cardWidth = document.querySelector("#carouselExampleControls2 .carousel-item").offsetWidth;
+        let scrollPosition = carouselInner.scrollLeft;
+
+        if (scrollPosition < carouselWidth - cardWidth * 4) {
+            scrollPosition += cardWidth;
+            carouselInner.scrollTo({
+                left: scrollPosition,
+                behavior: "smooth"
+            });
+        }
+    }
+
+    function handlePrevClick2() {
+        const carouselInner = document.querySelector("#carouselExampleControls2 .carousel-inner");
+        const cardWidth = document.querySelector("#carouselExampleControls2 .carousel-item").offsetWidth;
+        let scrollPosition = carouselInner.scrollLeft;
+
+        if (scrollPosition > 0) {
+            scrollPosition -= cardWidth;
+            carouselInner.scrollTo({
+                left: scrollPosition,
+                behavior: "smooth"
+            });
+        }
+    }
+
+    if (window.matchMedia("(min-width: 768px)").matches) {
+        const nextButton1 = document.querySelector("#carouselExampleControls1 .carousel-control-next");
+        const prevButton1 = document.querySelector("#carouselExampleControls1 .carousel-control-prev");
+        const nextButton2 = document.querySelector("#carouselExampleControls2 .carousel-control-next");
+        const prevButton2 = document.querySelector("#carouselExampleControls2 .carousel-control-prev");
+
+        nextButton1.addEventListener("click", handleNextClick1);
+        prevButton1.addEventListener("click", handlePrevClick1);
+        nextButton2.addEventListener("click", handleNextClick2);
+        prevButton2.addEventListener("click", handlePrevClick2);
+    } else {
+        carousel1.classList.add("slide");
+        carousel2.classList.add("slide");
+    }
+
+</script>
+
+
+</html>
+{% endblock %}

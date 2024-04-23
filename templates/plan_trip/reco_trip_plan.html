@@ -1,0 +1,30 @@
+{% extends "template.html"%}
+{%block main_container%}
+<div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+    <form style="width: 80%;">
+        {%for concept in concept_list%}
+        <div class="container p-4 my-3 alert" style="border: 1px solid #007bff;border-radius: 10px; background-color: #ffffff;">
+            <div class="row">
+                <h3 class="col">CONCEPT {{concept.concept_number}} : {{concept.concept_name}}</h3>
+                <button class="btn btn-outline-primary col-md-3" style="height: 100%;" formaction="/plan_trip/trip_plan/"
+                    name="trip_concept" value={{concept.concept_number}} formmethod="">계획 짜러 가기</button>
+            </div>
+        </div>
+        {%endfor%}
+        <div class="container p-4 my-3 alert" style="border: 1px solid #007bff;border-radius: 10px; background-color: #ffffff;">
+            <div class="row">
+                <h3 class="col">CONCEPT {{concept_list|length+1}} : 사용자 설정</h3>
+                <button class="btn btn-outline-primary col-md-3" style="height: 100%;" formaction="/plan_trip/trip_plan/"
+                    name="trip_concept" value="{{concept_list|length+1}}" method="">계획 짜러 가기</button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col text-right">
+                    <button class="btn btn-primary col-md-3" style="height: 100%;" formaction="/plan_trip/reserve_tour/"
+                        name="trip_concept" value="trip_concept_user">뒤로 가기</button>
+                </div>
+            </div>
+        </div>
+    </form>
+        {%endblock%}

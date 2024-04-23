@@ -1,0 +1,47 @@
+{% extends "template.html"%}
+
+
+
+{% block main_container %}
+<h2 class="mt-3 ml-3"><{{ notices.title }}></h2>
+
+<div class="col-md-12">
+    <div class="col-md-12">
+        <form method="post">
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요" name="title"
+                    value="{{ notices.title }}">
+            </div>
+            <div class="form-group">
+                <label for="author"> 작성자 </label>
+                <input type="text" class="form-control" id="author" placeholder="작성자를 입력하세요" name="writer"
+                    value="{{ notices.writer }}">
+            </div>
+            <div class="form-group">
+                <label for="date"> 작성일자 </label>
+                <input type="text" class="form-control" id="date" placeholder="작성일자를 입력하세요" name="date"
+                    value="{{ notices.date }}">
+            </div>
+            <div class="form-group">
+                <label for="content"> 내용 </label>
+                <textarea rows="10" class="form-control" id="content" name="content"
+                    placeholder="내용을 입력하세요">{{ notices.content }}</textarea>
+                <input type="hidden" name="id" value="{{notices.id}}">
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="/admin/notice" role="button" class="btn btn-primary me-2">취소</a>
+                    <button type="submit" formaction="/admin/notice_update" class="btn btn-success me-2"
+                        value="{{notices.content}}" id="btn-save">수정</button>
+                </div>
+                <div class="col-md-6 text-end">
+                    <input type="hidden" name="id" value="{{ notices.id }}">
+                    <button type="submit" formaction="/admin/notice_delete" class="btn btn-danger me-2"
+                        id="btn-delete">삭제</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

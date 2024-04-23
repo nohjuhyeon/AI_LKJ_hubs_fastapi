@@ -1,0 +1,231 @@
+{% extends "template.html"%}
+
+
+
+{% block main_container %}
+<style>
+    .p-3 {
+        width: 900px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 mt-5 mb-5">
+        <h2 class="row justify-content-center" style="text-align: center; margin-top: 10px; margin-bottom: 10px; color: rgb(27, 177, 197);
+        text-shadow: 1px 1px 1px #000;">PathFinder</h2>
+        <div class="row justify-content-center" style="text-align: center;margin-top: 10px; margin-bottom: 10px;"><h5>AI가
+            만들어주는 나만의 여행 계획</h5></div>
+        <form class="row justify-content-center" style="margin-top: 10px; margin-bottom: 10px;"
+            action="/plan_trip/reserve_transfer/" method="GET">
+            <div class="col-md-2">
+                <select class="form-select" name="transfer" required>
+                    <option value="" disabled selected style="display: none;">교통수단</option>
+                    <option value="entire">전체</option>
+                    <option value="train">기차</option>
+                    <option value="plane">항공</option>
+                    <option value="car">렌트카</option>
+                    <option value="bus">버스</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-text">출발지</span>
+                    <input type="text" class="form-control" name="depart" required="">
+                    <div class="invalid-feedback">
+                        Name on card is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-text">목적지</span>
+                    <input type="text" class="form-control" name="arrive" required="">
+                    <div class="invalid-feedback">
+                        Name on card is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group">
+                    <select class="form-select" name="transfer_mem" required>
+                        <option value="" disabled selected style="display: none;">인원</option>
+                        <option value=1>1명</option>
+                        <option value=2>2명</option>
+                        <option value=3>3명</option>
+                        <option value=4>4명</option>
+                        <option value=5>5명</option>
+                        <option value=0>6명 +</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" type="submit">찾기</button>
+            </div>
+            <hr>
+            <div class="input-group col-md-4">
+                <span class="input-group-text">출발일</span>
+                <input type="date" class="form-control" name="depart_date" required="">
+                <div id="error" class="invalid-feedback">
+                    Name on card is required
+                </div>
+            </div>
+            <div class="input-group col-md-4">
+                <span class="input-group-text">도착일</span>
+                <input type="date" class="form-control" name="arrive_date" required="">
+                <div class="invalid-feedback">
+                    Name on card is required
+                </div>
+            </div>
+    </div>
+</div>
+</form>
+<!-- Carousel -->
+<div class="row">
+    <div class="col-md-1"></div>
+    <div id="demo" class="col-md-10 carousel slide" data-bs-ride="carousel">
+
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+        </div>
+
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://img.kbs.co.kr/kbs/620/news.kbs.co.kr/data/fckeditor/new/image/2021/05/07/314691620354493423.jpg"
+                    alt="Los Angeles" class="d-block" style="width:100%">
+            </div>
+            <div class="carousel-item">
+                <img src="https://blog.kakaocdn.net/dn/Gaa6y/btq88xwL5wG/RDSakUu1vGUFkKnUz0Pbh0/img.jpg" alt="Chicago"
+                    class="d-block" style="width:100%">
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.gyotongn.com/news/photo/202306/345546_94278_5152.jpg" alt="New York"
+                    class="d-block" style="width:100%">
+            </div>
+        </div>
+        <!-- Left and right controls/icons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="my-3 p-3 bg-body rounded shadow-sm">
+                <div class="row border-bottom pb-2 mb-0 justify-content-between">
+                    <h6 class="col-md-auto"> O월의 베스트 3 여행지</h6>
+                    <small class="col-md-auto d-block text-end  pb-2 mb-0">
+                        <a href="/event/best_region" class="link">전체 보기</a>
+                    </small>
+                </div>
+                <div class="d-flex text-body-secondary pt-3">
+                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
+                            dy=".3em">32x32</text>
+                    </svg>
+                    <p class="pb-3 mb-0 small lh-sm border-bottom">
+                        <strong class="d-block text-gray-dark">Best 1: 영국 런던</strong>
+                        역사와 현대가 조화로운 도시로, 아름다운 유적과 다양한 문화체험을 즐길 수 있는 멋진 여행지
+                    </p>
+                </div>
+                <div class="d-flex text-body-secondary pt-3">
+                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c"
+                            dy=".3em">32x32</text>
+                    </svg>
+                    <p class="pb-3 mb-0 small lh-sm border-bottom">
+                        <strong class="d-block text-gray-dark">Best 2: 프랑스 파리</strong>
+                        사랑과 예술의 도시로, 아름다운 성과 유명한 예술관, 그리고 로맨틱한 센 강을 감상할 수 있는 멋진 여행지
+                    </p>
+                </div>
+                <div class="d-flex text-body-secondary pt-3">
+                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1"
+                            dy=".3em">32x32</text>
+                    </svg>
+                    <p class="pb-3 mb-0 small lh-sm border-bottom">
+                        <strong class="d-block text-gray-dark">Best 3: 스페인 마드리드</strong>
+                        역사와 문화가 공존하는 도시로, 아름다운 왕궁과 예술의 보고, 그리고 놀라운 음식과 열정적인 축제를 경험할 수 있는 멋진 여행지
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="my-3 p-3 bg-body rounded shadow-sm">
+                <div class="row border-bottom pb-2 mb-0 justify-content-between">
+                    <h6 class="col-md-auto"> O월의 베스트 3 숙소</h6>
+                    <small class="col-md-auto d-block text-end  pb-2 mb-0">
+                        <a href="/event/best_dorm" class="link">전체 보기</a>
+                    </small>
+
+                </div>
+                <div class="d-flex text-body-secondary pt-3">
+                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
+                            dy=".3em">32x32</text>
+                    </svg>
+                    <p class="pb-3 mb-0 small lh-sm border-bottom">
+                        <strong class="d-block text-gray-dark">Best 1: 영국 런던의 The Ritz London</strong>
+                        역사적인 면모와 고급스러움이 어우러진 훌륭한 서비스를 경험할 수 있는 최고의 호텔
+                    </p>
+                </div>
+                <div class="d-flex text-body-secondary pt-3">
+                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c"
+                            dy=".3em">32x32</text>
+                    </svg>
+                    <p class="pb-3 mb-0 small lh-sm border-bottom">
+                        <strong class="d-block text-gray-dark">Best 2: 프랑스 파리의 Le Meurice</strong>
+                        루브르 박물관과 근접한 위치에 위치한 고급스러운 호텔로, 화려한 인테리어와 편안한 숙박을 제공
+                    </p>
+                </div>
+                <div class="d-flex text-body-secondary pt-3">
+                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1"
+                            dy=".3em">32x32</text>
+                    </svg>
+                    <p class="pb-3 mb-0 small lh-sm border-bottom">
+                        <strong class="d-block text-gray-dark">Best 3: 스페인 마드리드의 Hotel Villa Magna</strong>
+                        고급스러운 분위기와 우아한 객실, 탁월한 서비스로 유명한 호텔로, 편안하고 품격 있는 숙박
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+</div>
+<div class="col-md-3"></div>
+</div>
+
+{% endblock %}

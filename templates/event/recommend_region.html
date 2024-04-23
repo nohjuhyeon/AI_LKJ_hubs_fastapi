@@ -1,0 +1,290 @@
+{% extends "template.html"%}
+
+{% block main_container %}
+<style>
+    fieldset {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        padding: 10px;
+    }
+
+    .flex-container {
+        display: flex;
+        /* Flexbox를 활성화합니다. */
+        margin-top: 3px;
+        align-items: flex-start;
+        /* 두 박스를 상단 정렬합니다. */
+        gap: 20px;
+        /* 두 박스 사이의 간격을 설정합니다. */
+
+    }
+
+    /* 체크박스 간의 간격을 조절하는 스타일 */
+    .flex-container label {
+        margin-right: 9px;
+        /* 체크박스와 라벨 사이의 간격을 조절합니다. */
+    }
+
+    .search-button {
+        margin-left: auto;
+        /* 오른쪽으로 정렬합니다. */
+        margin-top: 20px;
+        height: 122px;
+        /* 버튼의 높이를 조절합니다. */
+        width: 115px;
+        /* 버튼의 너비를 조절합니다. */
+        font-size: 18px;
+        /* 버튼의 글꼴 크기를 조절합니다. */
+    }
+
+    .border {
+        background-color: #c9cfd4;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .community-content {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 10px 0;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        /* 버튼 배경색 */
+        border-color: #007bff;
+        /* 버튼 테두리색 */
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(221, 238, 240, 0.1);
+        /* 그림자 효과 */
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    }
+
+    .search-button {
+        width: 150px; /* 너비를 150px로 설정 */
+        height: 170px; /* 높이도 조절 가능 */
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    .btn-primary:hover {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #ffffff;
+    }
+
+    h4 {
+        font-weight: 500;
+        /* 글꼴 무게 */
+        color: #333333;
+    }
+
+    img.img-fluid {
+        border-radius: 8px;
+        /* 이미지 테두리 둥글게 */
+    }
+
+    /* 체크박스와 라벨 간의 간격 조절 */
+    .flex-container label {
+        margin-right: 21.5px;
+        font-size: 16px;
+        color: #555555;
+    }
+</style>
+
+<body>
+    <form>
+        <div class="row">
+            <div class="flex-container col-7">
+                <fieldset class="mt-4">
+                    <div class="ml-3">
+                        <legend class="mt-2">여행 컨셉</legend>
+                        <input type="checkbox" id="total_concept" name="concept" value="total_concept" />
+                        <label for="total_concept">전체</label>
+                        <input type="checkbox" id="nature" name="concept_01" value="자연관광" />
+                        <label for="nature">자연 관광</label>
+                        <input type="checkbox" id="cultural" name="concept_02" value="문화관광" />
+                        <label for="cultural">문화 관광</label>
+                        <input type="checkbox" id="leisure" name="concept_03" value="레저스포츠" />
+                        <label for="leisure">레저 스포츠</label>
+                        <input type="checkbox" id="history" name="concept_04" value="역사관광" />
+                        <label for="history">역사 관광</label>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="flex-container col-5">
+                <fieldset class="mt-4">
+                    <div class="ml-3">
+                        <legend class="mt-2">계절</legend>
+                        <input type="checkbox" id="total_season" name="season" value="total_season" />
+                        <label for="total_season">전체</label>
+                        <input type="checkbox" id="spring" name="season_01" value="spring" />
+                        <label for="spring">봄</label>
+                        <input type="checkbox" id="summer" name="season_02" value="summer" />
+                        <label for="summer">여름</label>
+                        <input type="checkbox" id="fall" name="season_03" value="fall" />
+                        <label for="fall">가을</label>
+                        <input type="checkbox" id="winter" name="season_04" value="winter" />
+                        <label for="winter">겨울</label>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="flex-container mb-5">
+            <fieldset class="mt-4">
+                <div class="ml-4">
+                    <legend class="mt-2">지역</legend>
+                    <input type="checkbox" id="total_region" name="region" value="total_region">
+                    <label for="total_region">전체</label>
+                    <input type="checkbox" id="seoul" name="region_01" value="서울">
+                    <label for="seoul">서울 특별시</label>
+                    <input type="checkbox" id="gyeonggi" name="region_02" value="경기" />
+                    <label for="gyeonggi">경기</label>
+                    <input type="checkbox" id="Incheon" name="region_03" value="인천" />
+                    <label for="Incheon">인천 광역시</label>
+                    <input type="checkbox" id="Gangwon" name="region_04" value="강원" />
+                    <label for="Gangwon">강원</label>
+                    <input type="checkbox" id="Gyeongsangnam-do" name="region_05" value="경남" />
+                    <label for="Gyeongsangnam-do">경상남도</label>
+                    <input type="checkbox" id="Gyeongsangbuk-do" name="region_06" value="경북" />
+                    <label for="Gyeongsangbuk-do">경상북도</label>
+                    <input type="checkbox" id="Gwangju" name="region_07" value="광주" />
+                    <label for="Gwangju">광주 광역시</label>
+                    <input type="checkbox" id="Daegu" name="region_08" value="대구" />
+                    <label for="Daegu">대구 광역시</label>
+                    <input type="checkbox" id="Daejeon" name="region_09" value="대전" />
+                    <label for="Daejeon">대전 광역시</label>
+                    <input type="checkbox" id="busan" name="region_10" value="부산" />
+                    <label for="busan">부산 광역시</label>
+                    <input type="checkbox" id="Sejong" name="region_11" value="세종" />
+                    <label for="Sejong">세종 특별시</label>
+                    <input type="checkbox" id="Ulsan" name="region_12" value="울산" />
+                    <label for="Ulsan">울산 광역시</label>
+                    <input type="checkbox" id="Jeollanam-do" name="region_13" value="전남" />
+                    <label for="Jeollanam-do">전라남도</label>
+                    <input type="checkbox" id="Jeollabuk-do" name="region_14" value="전북" />
+                    <label for="Jeollabuk-do">전라북도</label>
+                    <input type="checkbox" id="Chungcheongnam-do" name="region_15" value="충남" />
+                    <label for="Chungcheongnam-do">충청남도</label>
+                    <input type="checkbox" id="Chungcheongbuk-do" name="region_16" value="충북" />
+                    <label for="Chungcheongbuk-do">충청북도</label>
+                    <input type="checkbox" id="Jeju" name="region_17" value="제주" />
+                    <label for="Jeju">제주 특별자치도</label>
+                </div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary search-button">검색</button>
+        </div>
+    </form>
+
+    {%for attraction_element in attraction_list%}
+    <div class="container p-3 my-3 border">
+        <div class="row align-items-start">
+            <!-- 이미지 -->
+            <div class="col-md-3">
+                <img src={{attraction_element.attraction_img}} alt="여행지 이미지" class="img-fluid wide-image"
+                    style="height: 239px; width: 239px;">
+
+            </div>
+            <!-- 내용 -->
+            <div class="col-md-9">
+                <!-- 관광지 제목, 지역, 관광지 유형 -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4 class="border community-content">{{attraction_element.attraction_name}}</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="border community-content">{{attraction_element.region}}</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="border community-content">{{attraction_element.destination_type}}</h4>
+                    </div>
+                </div>
+                <!-- 주소 -->
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="border community-content">{{attraction_element.address}}</h4>
+                    </div>
+                </div>
+                <!-- 관광지 한 줄 소개와 자세히 보러가기 버튼 -->
+                <div class="row align-items-center just">
+                    <div class="col-md-9">
+                        <h4 class="border community-content">{{attraction_element.attraction_content}}</h4>
+                    </div>
+                    <div class="col-md-3 p">
+                        <a href="{{attraction_element.attraction_link}}"
+                            class="btn btn-primary btn-lg d-flex align-items-center mt-2"
+                            style="height: 100px; width: 180px;">자세히 보러가기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // "전체" 체크박스 선택 시
+        document.getElementById('total_concept').addEventListener('change', function () {
+            const isChecked = this.checked;
+            // "전체" 선택 시 다른 모든 체크박스 선택
+            document.querySelectorAll('input[name^="concept"]').forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+        });
+
+        // 개별 체크박스 변경 시
+        document.querySelectorAll('input[name^="concept"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                // 하나라도 해제되면 "전체" 체크박스도 해제
+                const allChecked = Array.from(document.querySelectorAll('input[name^="concept"]')).every(checkbox => checkbox.checked);
+                document.getElementById('total_concept').checked = allChecked;
+            });
+        });
+
+        document.getElementById('total_season').addEventListener('change', function () {
+            // "전체" 체크박스 선택 시
+            const isChecked = this.checked;
+            // "전체" 선택 시 다른 모든 체크박스 선택
+            document.querySelectorAll('input[name^="season"]').forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+        });
+
+        // 개별 체크박스 변경 시
+        document.querySelectorAll('input[name^="season"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                // 하나라도 해제되면 "전체" 체크박스도 해제
+                const allChecked = Array.from(document.querySelectorAll('input[name^="season"]')).every(checkbox => checkbox.checked);
+                document.getElementById('total_season').checked = allChecked;
+            });
+        });
+
+        document.getElementById('total_region').addEventListener('change', function () {
+            // "전체" 체크박스 선택 시
+            const isChecked = this.checked;
+            // "전체" 선택 시 다른 모든 체크박스 선택
+            document.querySelectorAll('input[name^="region"]').forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+            document.getElementById('none_region').checked = false; // 'none_region' 체크박스가 있다고 가정
+        });
+
+        // 개별 체크박스 변경 시
+        document.querySelectorAll('input[name^="region"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                // 하나라도 해제되면 "전체" 체크박스도 해제
+                const allChecked = Array.from(document.querySelectorAll('input[name^="region"]')).every(checkbox => checkbox.checked);
+                document.getElementById('total_region').checked = allChecked;
+            });
+        });
+    });
+</script>
+
+
+
+{% endblock %}
