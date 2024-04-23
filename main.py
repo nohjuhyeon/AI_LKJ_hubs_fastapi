@@ -64,8 +64,8 @@ app.add_middleware(
 
 from fastapi.staticfiles import StaticFiles
 # # url 경로(url에서 입력해야 하는 주소), 자원 물리 경로(directory; 실제 경로), 프로그래밍 측면(key의 이름 지정)
-app.mount("/css", StaticFiles(directory="resources\\css\\"), name="static_css")
-app.mount("/images", StaticFiles(directory="resources\\images\\"), name="static_images")
+app.mount("/css", StaticFiles(directory="resources/css/"), name="static_css")
+app.mount("/images", StaticFiles(directory="resources/images/"), name="static_images")
 
 
 
