@@ -25,3 +25,8 @@ apscheduler
 beanie
 selenium
 webdriver_manager
+
+beanie
+apscheduler
+selenium
+webdriver_manager
