@@ -1,34 +1,43 @@
 FROM python:3.11
 
-# OpenJDK 설치 (예시로 OpenJDK 17을 설치)
+# install any packages
 RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk fonts-nanum && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y openjdk-17-jdk fonts-nanum wget unzip
 
-# JAVA_HOME 환경 변수 설정
+# setup JAVA_HOME configuration
 ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64
 
-# 작업 디렉토리 설정
-WORKDIR /app
+# Install Chrome and related dependencies
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get update && apt-get install -y google-chrome-stable && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+    
+# setup fastapi
+WORKDIR /apps
 
-ARG BRANCH_NAME=data_engineers
-ARG DIR_NAME=AI_L.K.J_hubs # 변경대상
+ARG APP_DIR_NAME_FASTAPI
 
 # Clone the Git repository. Here we dynamically specify the repository name using the variable defined earlier.
-# RUN git clone -b ${BRANCH_NAME} https://github.com/gocolab/co_templates ${DIR_NAME}
-RUN git clone https://github.com/nohjuhyeon/AI_L.K.J_hubs ${DIR_NAME}           # 변경대상
+RUN git clone -b main https://github.com/nohjuhyeon/AI_LKJ_hubs_fastapi ${APP_DIR_NAME_FASTAPI}
+
+# Changes the working directory to /apps/${REPO_NAME}. This uses the variable to dynamically set the directory path.
+WORKDIR /apps/${APP_DIR_NAME_FASTAPI}
+
+RUN pip install --no-cache-dir -r ./requirements.txt
+
+# RUN rm -rf .git
+
+# setup springboots
+WORKDIR /apps
+
+ARG APP_DIR_NAME_SPRINGBOOT
+
+# Clone the Git repository. Here we dynamically specify the repository name using the variable defined earlier.
+RUN git clone -b main https://github.com/nohjuhyeon/AI_LKJ_hubs_spring ${APP_DIR_NAME_SPRINGBOOT}
+
 # Changes the working directory to /app/${REPO_NAME}. This uses the variable to dynamically set the directory path.
-WORKDIR /app/${DIR_NAME}
+WORKDIR /apps/${APP_DIR_NAME_SPRINGBOOT}
 
-# RUN pip install --no-cache-dir -r ./requirements.txt
-RUN pip install -r ./requirements.txt
-
-# RUN rm -rf .git               # 도커 만들어지고나면 주석처리하기
-
-## 진행전 해야할 선작업
-# - .git 삭제
-# - 프로젝트 폴더 이름 변경
-# - commit yo github
-# - Dockerfile 변경(2군데)
-# - RUN rm -rf .git 주석처리하기
+# RUN rm -rf .git

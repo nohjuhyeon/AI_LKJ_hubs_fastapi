@@ -21,3 +21,7 @@ python-multipart
 python-jose[cryptography]
 passlib[bcrypt]
 pydantic-settings
+apscheduler
+beanie
+selenium
+webdriver_manager

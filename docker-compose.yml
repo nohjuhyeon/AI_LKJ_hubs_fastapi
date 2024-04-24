@@ -1,20 +1,13 @@
 version: '3.9'
 services:
-  jupyter_fastapi:
-    container_name: ${CONTAINER_PREFIX}_jupyter_fastapi
-    image: template_data_engineers  # Specifies the name for the built image.
+  springboot_3.1.1_fastapi:
+    image: ${IMAGE_NAME}
     build:
       context: .
-      dockerfile: Dockerfile
-    environment:
-      - JUPYTER_ENABLE_LAB=yes
-    ports:
-      - 8888:8888
-      - 8000:8000
-    depends_on:
-      - mongodb
-    networks:
-      - app-network      
+      args:
+        APP_DIR_NAME_SPRINGBOOT: ${APP_DIR_NAME_SPRINGBOOT}      
+        APP_DIR_NAME_FASTAPI: ${APP_DIR_NAME_FASTAPI}      
+      dockerfile: ./Dockerfile
     command:
       - "jupyter"
       - "lab"
@@ -23,15 +16,28 @@ services:
       - "--no-browser"
       - "--allow-root"
       - "--NotebookApp.token=''"
-      - "--NotebookApp.notebook_dir='/app'"      
-  mongodb:
+      - "--NotebookApp.notebook_dir='/apps'"      
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    ports:
+      - 8888:8888
+      - 8000:8000
+      - 8080:8080
+  db_mysql_8:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: AI_LKJ
+      MYSQL_LOWER_CASE_TABLE_NAMES: 1      
+      MYSQL_DATABASE: AI_LKJ
+      MYSQL_USER: AI_LKJ
+      MYSQL_PASSWORD: AI_LKJ
+    ports:
+      - "3306:3306"  
+    volumes:
+      - ./init_mysql.sql:/docker-entrypoint-initdb.d/init_mysql.sql        
+  db_mongodb_7:
     image: mongo:7
-    container_name: ${CONTAINER_PREFIX}_mongodb
     restart: always
     ports:
-      - 27017:27017
-    networks:
-      - app-network  
-networks:
-  app-network:
-    driver: bridge      
+      - 27017:27017      

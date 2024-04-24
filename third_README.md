@@ -23,8 +23,8 @@
 |--|--|--|--|
 |Part 1|페르소나 정하기|4/18~4/23|진행 중|
 ||페르소나 요소 정하기|4/19~4/20|완료|
-||페르소나 요소 데이터 수집하기|4/22~4/22||
-||페르소나 정하기|4/23~4/23||
+||페르소나 요소 데이터 수집하기|4/22~4/22|완료|
+||페르소나 정하기|4/23~4/23|완료|
 |Part 2|마케팅 방안 분석하기|||
 |||||
 |||||
@@ -37,10 +37,13 @@
 |Part 1|ERD 및 화면 정의서 작성|4/18~4/19|완료|
 ||ERD 작성하기|4/18~4/19|완료|
 ||화면 정의서 작성하기|4/18~4/19|완료|
-|Part 2||||
+|Part 2|예약 관련 데이터 긁어오기|||
 |||||
 |||||
-|Part 3||||
+|Part 3|회원 가입 및 로그인 서비스 구현하기|||
+|||||
+|||||
+|Part 4|Chat GPT를 활용하여 여행 일정 계획 서비스 구현하기|||
 |||||
 |||||
 ### (3) 주요 기술
@@ -84,8 +87,8 @@ https://myungjun-kim.atlassian.net/jira/software/projects/ALH/boards/4/timeline
 ## - Youtube 동작 링크
 
 ## - 참조 사이트
-|구분|사이트명|
-|--|--|
-|데이터 수집 및 분석 자료||
-|||
+|구분|목적|사이트명|
+|--|--|--|
+|데이터 수집 및 분석 자료|페르소나 설정|["국내여행 30∙40대 여성, 해외여행은 20대 남성이 주도"](https://www.newspim.com/news/view/20240130000971)|
+||페르소나 설정|[통계청](https://kosis.kr/statHtml/statHtml.do?orgId=113&tblId=DT_113_STBL_1029207&vw_cd=MT_ZTITLE&list_id=314_31401_013&scrId=&seqNo=&lang_mode=ko&obj_var_id=&itm_id=&conn_path=MT_ZTITLE&path=%252FstatisticsList%252FstatisticsListIndex.do)|
 |||
