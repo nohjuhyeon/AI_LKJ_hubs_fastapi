@@ -49,56 +49,66 @@ time.sleep(1)
 #인기순 버튼
 best_button = browser.find_element(by=By.CSS_SELECTOR, value="#chips > yt-chip-cloud-chip-renderer:nth-child(2)")
 best_button.click()
-# 여러개 동영상 collection 있을때 버튼
-count_buttons = browser.find_elements(by=By.CSS_SELECTOR, value="#content.style-scope ytd-rich-item-renderer")
 
-time.sleep(1)
-
-for count_button in count_buttons :
-    count_button.click()
+for i in range(10):    # body 엘리먼트 찾기
+    element_body = browser.find_element(by = By.CSS_SELECTOR, value = "body")
+    # 스크롤 다운
+    element_body.send_keys(Keys.END)                                                        # scroll 길게 함
+    # 현재 스크롤 높이 가져오기
     time.sleep(1)
-    # 설명 더보기 버튼
-    expand_button = browser.find_element(by=By.CSS_SELECTOR, value="#expand")
-    expand_button.click()
+    current_scrollHeight = browser.execute_script("return document.body.scrollHeight")      # 현재의 scrollheight를 while문 안에 넣어 반복하여 길게 함.
 
-    # 스크롤
 
-    for i in range(10):    # body 엘리먼트 찾기
-        element_body = browser.find_element(by = By.CSS_SELECTOR, value = "body")
-        # 스크롤 다운
-        element_body.send_keys(Keys.END)                                                        # scroll 길게 함
-        # 현재 스크롤 높이 가져오기
+    # 여러개 동영상 collection 있을때 버튼
+    count_buttons = browser.find_elements(by=By.CSS_SELECTOR, value="#content.style-scope ytd-rich-item-renderer")
+
+    time.sleep(1)
+
+    for count_button in count_buttons :
+        count_button.click()
+        time.sleep(2)
+        # 설명 더보기 버튼
+        expand_button = browser.find_element(by=By.CSS_SELECTOR, value="#expand")
+        expand_button.click()
+
+        # 스크롤
+
+        for i in range(10):    # body 엘리먼트 찾기
+            element_body = browser.find_element(by = By.CSS_SELECTOR, value = "body")
+            # 스크롤 다운
+            element_body.send_keys(Keys.END)                                                        # scroll 길게 함
+            # 현재 스크롤 높이 가져오기
+            time.sleep(1)
+            current_scrollHeight = browser.execute_script("return document.body.scrollHeight")      # 현재의 scrollheight를 while문 안에 넣어 반복하여 길게 함.
+            
+            
         time.sleep(1)
-        current_scrollHeight = browser.execute_script("return document.body.scrollHeight")      # 현재의 scrollheight를 while문 안에 넣어 반복하여 길게 함.
-        
-        
-    time.sleep(1)
 
 
-    # 제목,날짜,조회수,좋아요,설명
-    title = browser.find_element(by=By.CSS_SELECTOR, value="#title > h1")
-    date = browser.find_element(by=By.CSS_SELECTOR, value="#info > span:nth-child(3)")
-    views = browser.find_element(by=By.CSS_SELECTOR, value="#info > span:nth-child(1)")
-    recommend = browser.find_element(by=By.CSS_SELECTOR, value="toggle-button-view-model > button-view-model > button > div.yt-spec-button-shape-next__button-text-content")
-    contents = browser.find_element(by=By.CSS_SELECTOR, value="#description-inline-expander > yt-attributed-string")
-    time.sleep(1)
+        # 제목,날짜,조회수,좋아요,설명
+        title = browser.find_element(by=By.CSS_SELECTOR, value="#title > h1")
+        date = browser.find_element(by=By.CSS_SELECTOR, value="#info > span:nth-child(3)")
+        views = browser.find_element(by=By.CSS_SELECTOR, value="#info > span:nth-child(1)")
+        recommend = browser.find_element(by=By.CSS_SELECTOR, value="toggle-button-view-model > button-view-model > button > div.yt-spec-button-shape-next__button-text-content")
+        contents = browser.find_element(by=By.CSS_SELECTOR, value="#description-inline-expander > yt-attributed-string")
+        time.sleep(1)
 
-    # 댓글리스트
-    list_reply = browser.find_elements(by=By.CSS_SELECTOR, value="#content-text > span")
-    for reply in list_reply:
-        print(reply)
-        # db에 집어넣기
-        # collection.insert_one({
-        # "title": title.text,
-        # "date": date.text,
-        # "views": views.text,
-        # "recommend": recommend.text,
-        # "contents": contents.text,
-        # "reply" : reply.text
-        # })
+        # 댓글리스트
+        list_reply = browser.find_elements(by=By.CSS_SELECTOR, value="#content-text > span")
+        for reply in list_reply:
+            print(reply.text)
+            # db에 집어넣기
+            # collection.insert_one({
+            # "title": title.text,
+            # "date": date.text,
+            # "views": views.text,
+            # "recommend": recommend.text,
+            # "contents": contents.text,
+            # "reply" : reply.text
+            # })
 
-        
-    browser.back()
-    pass
+            
+        browser.back()
+        pass
 
 browser.quit()                                      # - 브라우저 종료
