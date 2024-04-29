@@ -43,7 +43,7 @@ from selenium.webdriver.common.keys import Keys
 # 여러개 동영상 collection 있을때 버튼
 count_buttons = browser.find_elements(by=By.CSS_SELECTOR, value="#video-title")
 
-time.sleep(1)
+time.sleep(2)
 for count_button in count_buttons :
     count_button.click()
     time.sleep(1)
