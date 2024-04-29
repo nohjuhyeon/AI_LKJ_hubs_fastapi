@@ -50,7 +50,7 @@ time.sleep(1)
 best_button = browser.find_element(by=By.CSS_SELECTOR, value="#chips > yt-chip-cloud-chip-renderer:nth-child(2)")
 best_button.click()
 
-for i in range(10):    # body 엘리먼트 찾기
+for x in range(10):    # body 엘리먼트 찾기
     element_body = browser.find_element(by = By.CSS_SELECTOR, value = "body")
     # 스크롤 다운
     element_body.send_keys(Keys.END)                                                        # scroll 길게 함
