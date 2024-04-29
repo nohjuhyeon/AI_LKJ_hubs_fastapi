@@ -29,7 +29,7 @@ browser = webdriver.Chrome(service = ChromeService(webdriver_manager_directory),
 capabilities = browser.capabilities
 
 pass
-browser.get("https://www.youtube.com/@kimstravel")                                     # - 주소 입력
+browser.get("https://www.youtube.com/@JayTravelTV/featured")                                     # - 주소 입력
 
                                                     # - 가능 여부에 대한 OK 받음
 pass
@@ -98,14 +98,14 @@ for x in range(10):    # body 엘리먼트 찾기
         for reply in list_reply:
             print(reply.text)
             # db에 집어넣기
-            # collection.insert_one({
-            # "title": title.text,
-            # "date": date.text,
-            # "views": views.text,
-            # "recommend": recommend.text,
-            # "contents": contents.text,
-            # "reply" : reply.text
-            # })
+            collection.insert_one({
+            "title": title.text,
+            "date": date.text,
+            "views": views.text,
+            "recommend": recommend.text,
+            "contents": contents.text,
+            "reply" : reply.text
+            })
 
             
         browser.back()
