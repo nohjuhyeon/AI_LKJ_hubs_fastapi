@@ -12,7 +12,7 @@ from pymongo import MongoClient
 
 mongoClient = MongoClient("mongodb://192.168.10.240:27017/")
 database = mongoClient["AI_LKJ"]
-collection = database['youtube_scaping_playlist']
+collection = database['youtube_scaping_scrolling']
 
 # Chrome 브라우저 옵션 생성
 chrome_options = Options()
@@ -29,7 +29,7 @@ browser = webdriver.Chrome(service = ChromeService(webdriver_manager_directory),
 capabilities = browser.capabilities
 
 pass
-browser.get("https://www.youtube.com/watch?v=cagfZyZrVdc&list=PL16SJ9T4e_knh1mwXHGl-SVYOWqDxg4nQ&ab_channel=%EC%97%AC%ED%96%89%EC%97%90%EB%AF%B8%EC%B9%98%EB%8B%A4")                                     # - 주소 입력
+browser.get("https://www.youtube.com/@JayTravelTV/featured")                                     # - 주소 입력
 
                                                     # - 가능 여부에 대한 OK 받음
 pass
@@ -40,29 +40,55 @@ from selenium.webdriver.common.by import By          # - 정보 획득
 from selenium.webdriver.common.keys import Keys
 # browser.save_screenshot('./formats.png')     
 
-# 여러개 동영상 collection 있을때 버튼
-count_buttons = browser.find_elements(by=By.CSS_SELECTOR, value="#video-title")
+
+
+# 동영상 버튼
+time.sleep(2)
+video_button = browser.find_element(by=By.CSS_SELECTOR, value="yt-tab-shape:nth-child(2) > div.yt-tab-shape-wiz__tab")
+video_button.click()
+time.sleep(2)
+best_button = browser.find_element(by=By.CSS_SELECTOR, value="#chips > yt-chip-cloud-chip-renderer:nth-child(2)")
+best_button.click()
+for x in range(5):
+        # 스크롤 다운
+    element_body = browser.find_element(by = By.CSS_SELECTOR, value = "body")
+    element_body.send_keys(Keys.END) 
+    time.sleep(2)  
+count_buttons = browser.find_elements(by=By.CSS_SELECTOR, value="#content.style-scope ytd-rich-item-renderer")
 
 time.sleep(2)
-for count_button in count_buttons :
-    count_button.click()
-    time.sleep(1)
-    # 설명 더보기 버튼
+for i in range(50) : 
+    # 인기순 누르고 스크래핑 열번 하고 컨텐츠 하나클릭 
+    element_body.send_keys(Keys.HOME) 
+    time.sleep(2)
+    best_button = browser.find_element(by=By.CSS_SELECTOR, value="#chips > yt-chip-cloud-chip-renderer:nth-child(2)")
+    time.sleep(2)
+    best_button.click()
+    time.sleep(2)
+    
+    for x in range(5):
+        # 스크롤 다운
+        element_body = browser.find_element(by = By.CSS_SELECTOR, value = "body")
+        element_body.send_keys(Keys.END)                                                        # scroll 길게 함
+        time.sleep(2)
+    count_buttons[i].click()
+    time.sleep(2)
+        # 설명 더보기 버튼
     expand_button = browser.find_element(by=By.CSS_SELECTOR, value="#expand")
     expand_button.click()
-
-    # 스크롤
+    time.sleep(2)
+        # 스크롤
 
     for i in range(10):    # body 엘리먼트 찾기
         element_body = browser.find_element(by = By.CSS_SELECTOR, value = "body")
         # 스크롤 다운
         element_body.send_keys(Keys.END)                                                        # scroll 길게 함
         # 현재 스크롤 높이 가져오기
-        time.sleep(1)
+        time.sleep(2)
         current_scrollHeight = browser.execute_script("return document.body.scrollHeight")      # 현재의 scrollheight를 while문 안에 넣어 반복하여 길게 함.
         
         
-    time.sleep(1)
+    time.sleep(2)
 
 
     # 제목,날짜,조회수,좋아요,설명
@@ -71,12 +97,12 @@ for count_button in count_buttons :
     views = browser.find_element(by=By.CSS_SELECTOR, value="#info > span:nth-child(1)")
     recommend = browser.find_element(by=By.CSS_SELECTOR, value="toggle-button-view-model > button-view-model > button > div.yt-spec-button-shape-next__button-text-content")
     contents = browser.find_element(by=By.CSS_SELECTOR, value="#description-inline-expander > yt-attributed-string")
-    time.sleep(1)
+    time.sleep(2)
 
     # 댓글리스트
     list_reply = browser.find_elements(by=By.CSS_SELECTOR, value="#content-text > span")
     for reply in list_reply:
-        print(reply.text)
+        print(title.text, date.text, views.text, recommend.text, contents.text,reply.text)
         # db에 집어넣기
         collection.insert_one({
         "title": title.text,
@@ -89,6 +115,7 @@ for count_button in count_buttons :
 
         
     browser.back()
+    time.sleep(2)
     pass
 
 browser.quit()                                      # - 브라우저 종료
