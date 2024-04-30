@@ -46,11 +46,16 @@ from selenium.webdriver.common.keys import Keys
 video_button = browser.find_element(by=By.CSS_SELECTOR, value="yt-tab-shape:nth-child(2) > div.yt-tab-shape-wiz__tab")
 video_button.click()
 time.sleep(1)
-#인기순 버튼
-best_button = browser.find_element(by=By.CSS_SELECTOR, value="#chips > yt-chip-cloud-chip-renderer:nth-child(2)")
-best_button.click()
+
+# 인기순 누르고 스크래핑 열번 하고 컨텐츠 하나클릭 
+
+
 
 for x in range(10):    # body 엘리먼트 찾기
+    #인기순 버튼
+    best_button = browser.find_element(by=By.CSS_SELECTOR, value="#chips > yt-chip-cloud-chip-renderer:nth-child(2)")
+    best_button.click()
+    time.sleep(1)
     element_body = browser.find_element(by = By.CSS_SELECTOR, value = "body")
     # 스크롤 다운
     element_body.send_keys(Keys.END)                                                        # scroll 길게 함
@@ -96,7 +101,7 @@ for x in range(10):    # body 엘리먼트 찾기
         # 댓글리스트
         list_reply = browser.find_elements(by=By.CSS_SELECTOR, value="#content-text > span")
         for reply in list_reply:
-            print(reply.text)
+            print(title.text, date.text, views.text, recommend.text, contents.text,reply.text)
             # db에 집어넣기
             collection.insert_one({
             "title": title.text,
@@ -108,7 +113,8 @@ for x in range(10):    # body 엘리먼트 찾기
             })
 
             
-        browser.back()
-        pass
+    browser.back()
+    time.sleep(1)
+    pass
 
 browser.quit()                                      # - 브라우저 종료
