@@ -16,7 +16,7 @@
         <div class="row justify-content-center" style="text-align: center;margin-top: 10px; margin-bottom: 10px;"><h5>AI가
             만들어주는 나만의 여행 계획</h5></div>
         <form class="row justify-content-center" style="margin-top: 10px; margin-bottom: 10px;"
-            action="/plan_trip/reserve_transfer/" method="GET">
+            action="/plan_trip/reco_themes/" method="POST">
             <div class="col-md-2">
                 <select class="form-select" name="transfer" required>
                     <option value="" disabled selected style="display: none;">교통수단</option>
@@ -38,7 +38,7 @@
             </div>
             <div class="col-md-3">
                 <div class="input-group">
-                    <span class="input-group-text">목적지</span>
+                    <span class="input-group-text">도착지</span>
                     <input type="text" class="form-control" name="arrive" required="">
                     <div class="invalid-feedback">
                         Name on card is required

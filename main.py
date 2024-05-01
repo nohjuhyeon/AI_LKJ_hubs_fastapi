@@ -1,4 +1,6 @@
-from fastapi import FastAPI               
+from fastapi import HTTPException
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse               
 app = FastAPI()
 
 from databases.connections import Settings
@@ -8,6 +10,7 @@ from seleniums.kto9suk9suk_scraping import kto9suk9suk_scraping
 from seleniums.yeomi_scraping import yeomi_scraping
 # from sample_function import message_print, job_print
 import datetime
+import openai
 
 settings = Settings()
 # @app.on_event("startup")
@@ -189,3 +192,82 @@ async def insert_post(request:Request):
     await request.form()
     print(dict(await request.form()))
     return templates.TemplateResponse("insert.html",{'request':request})
+
+# GPT 연결
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+import openai
+import re
+
+# openAI 테마 추천
+def recommend_themes(destination):
+    prompt = f"As a travel planner, create three broad travel themes suitable for a trip to {destination}, such as 'Gastronomy', 'Nature & Relaxation', 'Cultural Exploration'. Please focus on broad categories only, without any descriptions about the themes, and avoid any season-related themes. All responses should be translated into Korean."
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo-0125",
+            messages=[
+                {"role": "system", "content": "You are a travel planner, and your responses must be in Korean, focusing solely on broad themes."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        themes_text = response['choices'][0]['message']['content'].strip()
+        themes = re.split(r'\b[1-3][.)] ', themes_text)
+        return [theme.strip() for theme in themes if theme.strip()]
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.post("/plan_trip/reco_themes/", response_class=HTMLResponse)
+async def reco_themes(request: Request):
+    form_data = await request.form()
+    destination = form_data.get('arrive')
+    themes = recommend_themes(destination)
+    return templates.TemplateResponse("plan_trip/reco_themes.html", {
+        'request': request,
+        'themes': themes,
+        'destination': destination,
+        'depart': form_data.get('depart'),
+        'transfer_mem': form_data.get('transfer_mem'),
+        'depart_date': form_data.get('depart_date'),
+        'arrive_date': form_data.get('arrive_date')
+    })
+
+# OpenAI detailed itinerary recommendation
+def generate_itinerary(departure, destination, people, theme, start_date, end_date):
+    detailed_prompt = f"""
+    As a travel planner, create a detailed itinerary for {people} people traveling from {departure} to {destination} from {start_date} to {end_date}. 
+    Include the following details:
+    - Theme: {theme}
+    - Recommended activities for morning, afternoon, and evening each day.
+    - Cultural sites and dining options that are popular among locals.
+    - Transportation advice between locations within the destination.
+    Please structure all responses in an HTML table format that can be styled with CSS, with separate rows for morning, afternoon, and evening activities each day. Each activity should be detailed and the table should be ready for professional presentation in a web interface. Ensure that all responses are accurately provided and translated into Korean.
+    """
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo-0125",
+            messages=[
+                {"role": "system", "content": "You are a travel planner."},
+                {"role": "user", "content": detailed_prompt}
+            ]
+        )
+        return response['choices'][0]['message']['content']
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.post("/plan_trip/trip_itinerary/", response_class=HTMLResponse)
+async def plan_trip(request: Request):
+    form_data = await request.form()
+    itinerary = generate_itinerary(
+        departure=form_data.get('depart'),
+        destination=form_data.get('destination'),
+        people=form_data.get('transfer_mem'),
+        theme=form_data.get('theme'),
+        start_date=form_data.get('depart_date'),
+        end_date=form_data.get('arrive_date')
+    )
+    return templates.TemplateResponse("plan_trip/trip_itinerary.html", {'request': request, 'itinerary': itinerary})
+
