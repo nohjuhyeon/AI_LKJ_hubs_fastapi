@@ -29,7 +29,7 @@ browser = webdriver.Chrome(service = ChromeService(webdriver_manager_directory),
 capabilities = browser.capabilities
 
 pass
-browser.get("https://www.youtube.com/@JayTravelTV/featured")                                     # - 주소 입력
+browser.get("https://www.youtube.com/@korea_trip/featured")                                     # - 주소 입력
 
                                                     # - 가능 여부에 대한 OK 받음
 pass
@@ -62,7 +62,6 @@ for i in range(50) :
     element_body.send_keys(Keys.HOME) 
     time.sleep(2)
     best_button = browser.find_element(by=By.CSS_SELECTOR, value="#chips > yt-chip-cloud-chip-renderer:nth-child(2)")
-    time.sleep(2)
     best_button.click()
     time.sleep(2)
     
@@ -70,7 +69,8 @@ for i in range(50) :
         # 스크롤 다운
         element_body = browser.find_element(by = By.CSS_SELECTOR, value = "body")
         element_body.send_keys(Keys.END)                                                        # scroll 길게 함
-        time.sleep(2)
+        time.sleep(3)
+    count_buttons = browser.find_elements(by=By.CSS_SELECTOR, value="#content.style-scope ytd-rich-item-renderer")
     count_buttons[i].click()
     time.sleep(2)
         # 설명 더보기 버튼
@@ -102,7 +102,7 @@ for i in range(50) :
     # 댓글리스트
     list_reply = browser.find_elements(by=By.CSS_SELECTOR, value="#content-text > span")
     for reply in list_reply:
-        print(title.text, date.text, views.text, recommend.text, contents.text,reply.text)
+        print(title.text)
         # db에 집어넣기
         collection.insert_one({
         "title": title.text,

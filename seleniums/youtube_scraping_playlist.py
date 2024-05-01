@@ -29,7 +29,7 @@ browser = webdriver.Chrome(service = ChromeService(webdriver_manager_directory),
 capabilities = browser.capabilities
 
 pass
-browser.get("https://www.youtube.com/watch?v=cagfZyZrVdc&list=PL16SJ9T4e_knh1mwXHGl-SVYOWqDxg4nQ&ab_channel=%EC%97%AC%ED%96%89%EC%97%90%EB%AF%B8%EC%B9%98%EB%8B%A4")                                     # - 주소 입력
+browser.get("https://www.youtube.com/watch?v=voYHeuKG2ho&list=PLrz06nDEBDq5Gta-s1EHgTSJa05DoFdB1&index=1")                                     # - 주소 입력
 
                                                     # - 가능 여부에 대한 OK 받음
 pass
@@ -76,16 +76,16 @@ for count_button in count_buttons :
     # 댓글리스트
     list_reply = browser.find_elements(by=By.CSS_SELECTOR, value="#content-text > span")
     for reply in list_reply:
-        print(reply.text)
-        # db에 집어넣기
-        collection.insert_one({
-        "title": title.text,
-        "date": date.text,
-        "views": views.text,
-        "recommend": recommend.text,
-        "contents": contents.text,
-        "reply" : reply.text
-        })
+        print(title.text)
+        # # db에 집어넣기
+        # collection.insert_one({
+        # "title": title.text,
+        # "date": date.text,
+        # "views": views.text,
+        # "recommend": recommend.text,
+        # "contents": contents.text,
+        # "reply" : reply.text
+        # })
 
         
     browser.back()
