@@ -13,27 +13,28 @@ settings = Settings()
 @app.on_event("startup")
 async def init_db():
     await settings.initialize_database()
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=0, minute=0)    
-    scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=4, minute=0)    
-    scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=8, minute=0)    
-    scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=12, minute=0)    
-    scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=16, minute=0)    
-    scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=20, minute=0)    
-    scheduler.add_job(yeomi_scraping, trigger='cron', hour=2, minute=0)
-    scheduler.add_job(yeomi_scraping, trigger='cron', hour=6, minute=0)
-    scheduler.add_job(yeomi_scraping, trigger='cron', hour=10, minute=0)
-    scheduler.add_job(yeomi_scraping, trigger='cron', hour=14, minute=0)
-    scheduler.add_job(yeomi_scraping, trigger='cron', hour=18, minute=0)
-    scheduler.add_job(yeomi_scraping, trigger='cron', hour=22, minute=0)
+    # scheduler = BackgroundScheduler()
+    # scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=0, minute=0)    
+    # scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=4, minute=0)    
+    # scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=8, minute=0)    
+    # scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=12, minute=0)    
+    # scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=16, minute=0)    
+    # scheduler.add_job(kto9suk9suk_scraping, trigger='cron', hour=20, minute=0)    
+    # scheduler.add_job(yeomi_scraping, trigger='cron', hour=2, minute=0)
+    # scheduler.add_job(yeomi_scraping, trigger='cron', hour=6, minute=0)
+    # scheduler.add_job(yeomi_scraping, trigger='cron', hour=10, minute=0)
+    # scheduler.add_job(yeomi_scraping, trigger='cron', hour=14, minute=0)
+    # scheduler.add_job(yeomi_scraping, trigger='cron', hour=18, minute=0)
+    # scheduler.add_job(yeomi_scraping, trigger='cron', hour=22, minute=0)
 
 # 스케줄러 시작
-    scheduler.start()
+    # scheduler.start()
 
 from routes.admin import router as admin_router                   
 from routes.mypage import router as second_router
 from routes.plan_trip import router as users_router
 from routes.consult import router as consult_router
+from routes.consult_api import router as consult_api_router
 from routes.event import router as event_router
 from routes.detailed_region import router as detailed_router
 
@@ -41,6 +42,7 @@ app.include_router(admin_router, prefix="/admin")
 app.include_router(second_router, prefix="/mypage")
 app.include_router(users_router, prefix="/plan_trip")
 app.include_router(consult_router, prefix="/consult")
+app.include_router(consult_api_router, prefix="/consult_api")
 app.include_router(event_router, prefix="/event")
 app.include_router(detailed_router, prefix="/detailed_region")
 
