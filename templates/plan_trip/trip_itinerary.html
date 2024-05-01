@@ -1,0 +1,76 @@
+{% extends "template.html" %}
+
+{% block main_container %}
+<div class="container">
+    <h2 class="my-3 text-center">여행 일정</h2>
+    {% if itinerary %}
+    <div class="itinerary">
+        {{ itinerary | safe }}
+    </div>
+    
+    {% else %}
+    <div class="alert alert-warning" role="alert">  
+        일정 정보를 불러오는 데 실패했습니다. 자세한 오류 메시지: {{ error_message }}
+
+    {% endif %}
+</div>
+
+<style>
+    .itinerary {
+        white-space: pre-line;
+        background: #f4f4f9;
+        border-left: 4px solid #007bff;
+        padding: 20px;
+        margin-top: 20px;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        line-height: 1.6;
+    }
+    .day-plan {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    .day-plan:last-child {
+        border-bottom: none;
+    }
+    .plan-title {
+        font-size: 20px;
+        color: #007bff;
+        font-weight: bold;
+    }
+    .plan-body {
+        margin-left: 20px;
+    }
+    .btn-add-plan {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    .btn-add-plan:hover {
+        background-color: #218838;
+    }
+</style>
+{% for day in itinerary.days %}
+    <div class="day-plan">
+        <h3 class="plan-title">{{ day.date }}</h3>
+        <div class="plan-body">
+            <p>{{ day.morning_activity }}</p>
+            <p>{{ day.afternoon_activity }}</p>
+            <p>{{ day.evening_activity }}</p>
+            <button class="btn-add-plan" onclick="addToPlan('{{ day.date }}')">계획에 추가하기</button>
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+<script>
+function addToPlan(date) {
+    alert("Added to your plan: " + date);
+}
+</script>
+{% endblock %}
