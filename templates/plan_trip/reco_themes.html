@@ -1,0 +1,29 @@
+{% extends "template.html" %}
+
+{% block main_container %}
+<div class="container">
+    <h2 class="my-3 text-center">Select a Travel Theme</h2>
+    {% if themes %}
+    <form action="/plan_trip/trip_itinerary/" method="post">
+        <div class="form-group">
+            <label for="theme">Choose a theme for your trip to {{ destination }}:</label>
+            <select class="form-control" id="theme" name="theme">
+                {% for theme in themes %}
+                <option value="{{ theme }}">{{ theme }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="hidden" name="destination" value="{{ destination }}">
+        <input type="hidden" name="depart" value="{{ depart }}">
+        <input type="hidden" name="transfer_mem" value="{{ transfer_mem }}">
+        <input type="hidden" name="depart_date" value="{{ depart_date }}">
+        <input type="hidden" name="arrive_date" value="{{ arrive_date }}">
+        <button type="submit" class="btn btn-primary mt-3">Get Detailed Itinerary</button>
+    </form>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        Failed to load themes. Detailed error message: {{ error_message }}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
