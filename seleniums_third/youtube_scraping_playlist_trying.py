@@ -29,7 +29,7 @@ browser = webdriver.Chrome(service = ChromeService(webdriver_manager_directory),
 capabilities = browser.capabilities
 
 pass
-browser.get("https://www.youtube.com/watch?v=bbsy79q7BlM&list=PLFXCgyvIHGf_OZNeSFqKwKqFSXUkk0EB1&index=1")                                     # - 주소 입력
+browser.get("https://www.youtube.com/watch?v=QGs6GHZwWsQ&list=PLb0HLSMNM2v-5i-MJPy10f_Ngn7sX6cfC&index=1")                                     # - 주소 입력
 
                                                     # - 가능 여부에 대한 OK 받음
 pass
@@ -44,7 +44,7 @@ from selenium.webdriver.common.keys import Keys
 count_buttons = browser.find_elements(by=By.CSS_SELECTOR, value="#video-title")
 
 time.sleep(2)
-for i in range(15,17) :
+for i in range(17,51) :
     count_buttons = browser.find_elements(by=By.CSS_SELECTOR, value="#video-title")
     count_buttons[i].click()
     time.sleep(1)
