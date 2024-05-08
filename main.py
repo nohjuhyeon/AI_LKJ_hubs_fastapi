@@ -6,8 +6,6 @@ app = FastAPI()
 from databases.connections import Settings
 from beanie import PydanticObjectId
 from apscheduler.schedulers.background import BackgroundScheduler
-from seleniums.kto9suk9suk_scraping import kto9suk9suk_scraping
-from seleniums.yeomi_scraping import yeomi_scraping
 # from sample_function import message_print, job_print
 import datetime
 import openai
@@ -200,10 +198,12 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 import openai
 import re
+openai.api_key = OPENAI_API_KEY
 
 # openAI 테마 추천
 def recommend_themes(destination):

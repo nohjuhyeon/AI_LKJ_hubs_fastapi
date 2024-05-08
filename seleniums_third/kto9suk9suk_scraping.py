@@ -53,9 +53,9 @@ def kto9suk9suk_scraping():
         time.sleep(3)
 
         email_input = browser.find_element(by=By.CSS_SELECTOR,value='#loginForm > div > div:nth-child(1) > div > label > input')
-        email_input.send_keys('njh02052720')
+        email_input.send_keys('')
         pswd_input = browser.find_element(by=By.CSS_SELECTOR,value='#loginForm > div > div:nth-child(2) > div > label > input')
-        pswd_input.send_keys('njh12345!')
+        pswd_input.send_keys('')
         login_check_btn = browser.find_element(by=By.CSS_SELECTOR,value='#loginForm > div > div:nth-child(3)')
         login_check_btn.click()
         time.sleep(5)
@@ -64,19 +64,6 @@ def kto9suk9suk_scraping():
         pass_btn.click()
         time.sleep(3)
 
-        # facebook_btn = browser.find_element(by=By.CSS_SELECTOR,value='#loginForm > div > div:nth-child(5) > button')
-        # facebook_btn.click()
-        # email_input = browser.find_element(by=By.CSS_SELECTOR,value='#email')
-        # email_input.send_keys('01038387360')
-        # pswd_input = browser.find_element(by=By.CSS_SELECTOR,value='#pass')
-        # pswd_input.send_keys('wngus2720!')
-        # login_check_btn = browser.find_element(by=By.CSS_SELECTOR,value='#loginbutton')
-        # login_check_btn.click()
-        # time.sleep(10)
-        # user_choice_btn = browser.find_element(by=By.CSS_SELECTOR,value='div.x1tu34mt ')
-        # user_choice_btn.click()
-        # time.sleep(10)
-        # pass
         element_body = browser.find_element(by=By.CSS_SELECTOR,value="body")
         previous_scrollHeight = 0
         time.sleep(3)
