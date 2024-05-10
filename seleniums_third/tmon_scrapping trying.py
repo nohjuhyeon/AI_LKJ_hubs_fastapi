@@ -91,6 +91,9 @@ try :
         element_next = element_frame.find_element(by=By.XPATH, value='//*[@id="reviewPaginate"]/div/a[13]') #다음 버튼 누르기
         element_next.click()
         pass
+        
+
+        ###Current page+1로 바꾸기
 except :
     browser.quit()
 # element_pagination = browser.find_elements(by=By.CSS_SELECTOR, value="div#reviewPaginate > div.pagination > a")
