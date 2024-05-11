@@ -12,7 +12,7 @@ from pymongo import MongoClient
 
 mongoClient = MongoClient("mongodb://192.168.10.240:27017/")
 database = mongoClient["AI_LKJ"]
-collection = database['toru_pass_review']
+collection = database['data_tour_pass_review']
 # collection.delete_many({"title": "제주투어패스 48시간 프리패스 제주도 여행 체험 관광지 실내 액티비티 카트 카페 지도"})
 
 # collection.delete_many({})
@@ -110,7 +110,7 @@ for i in range(2,len(tour_pass_list)):
                 print(count)
                 collection.insert_one({'title':title,
                             'region':region,
-                            'good': rating,
+                            'rating': rating,
                             'date':date,
                             'content':content})
             try:
