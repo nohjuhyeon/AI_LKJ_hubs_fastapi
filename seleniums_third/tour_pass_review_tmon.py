@@ -13,6 +13,7 @@ from pymongo import MongoClient
 mongoClient = MongoClient("mongodb://192.168.10.240:27017/")
 database = mongoClient["AI_LKJ"]
 collection = database['data_tour_pass_review_tmon']
+# collection.delete_many({})
 # Chrome 브라우저 옵션 생성
 chrome_options = Options()
 
@@ -28,7 +29,7 @@ browser = webdriver.Chrome(service = ChromeService(webdriver_manager_directory),
 capabilities = browser.capabilities
 
 pass
-browser.get("https://www.tmon.co.kr/deal/10716684222?keyword=%ED%88%AC%EC%96%B4%ED%8C%A8%EC%8A%A4&tl_area=SKJCD&tl_ord=2&searchClick=DL%7CND%7CBM&tab=&thr=hs")                                     # - 주소 입력
+browser.get("https://www.tmon.co.kr/deal/25421624062?keyword=%ED%88%AC%EC%96%B4%ED%8C%A8%EC%8A%A4&tl_area=SKJCD&tl_ord=13&searchClick=DL%7CND%7CBM&tab=&thr=hs#tab=review")                                     # - 주소 입력
 
 pass
 html = browser.page_source                          # - html 파일 받음(and 확인)
@@ -48,7 +49,7 @@ time.sleep(1)
 while True:
     review_box = browser.find_elements(by=By.CSS_SELECTOR,value='#_reviewList > li > div')
     for review_element in review_box:
-        region = '부산'
+        region = '전북'
         date = review_element.find_element(by=By.CSS_SELECTOR,value='ul.type_bar_list > li:nth-child(2)').text
         date = date.split()[0].split('-')
         date = '.'.join(date) + '.'
@@ -61,11 +62,11 @@ while True:
         print(rating)
         print(date)
         print(content)
-        # collection.insert_one({'title':title,
-        #     'region':region,
-        #     'rating': rating,
-        #     'date':date,
-        #     'content':content})
+        collection.insert_one({'title':title,
+            'region':region,
+            'rating': rating,
+            'date':date,
+            'content':content})
     try:
         next_btn = browser.find_element(by=By.CSS_SELECTOR,value='#reviewPaginate > div > a.next_page')
         next_btn.click()
