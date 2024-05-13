@@ -80,16 +80,17 @@ try :
 
     while True:
         # 스크래핑 시작
-        element_pagination = element_frame.find_elements(by=By.CSS_SELECTOR, value="div#reviewPaginate > div.pagination > a")
-        for x in range(4,len(element_pagination)-2) : # 페이지 1부터 10번까지
-            element_pagination = element_frame.find_elements(by=By.CSS_SELECTOR, value="div#reviewPaginate > div.pagination > a")
-            element_pagination[x].click()
-            time.sleep(2)   
-        time.sleep(1)
+        # element_pagination = element_frame.find_elements(by=By.CSS_SELECTOR, value="div#reviewPaginate > div.pagination > a")
+        # for x in range(4,len(element_pagination)-2) : # 페이지 1부터 10번까지
+        #     element_pagination = element_frame.find_elements(by=By.CSS_SELECTOR, value="div#reviewPaginate > div.pagination > a")
+        #     element_pagination[x].click()
+        #     time.sleep(2)   
+        # time.sleep(1)
         
-        # element_next = browser.find_element(by=By.CSS_SELECTOR, value="#reviewPaginate > div > a.next_page") #다음 버튼 누르기
-        element_next = element_frame.find_element(by=By.XPATH, value='//*[@id="reviewPaginate"]/div/a[13]') #다음 버튼 누르기
+        element_next = browser.find_element(by=By.CSS_SELECTOR, value="#reviewPaginate > div > a.next_page") #다음 버튼 누르기
+        # element_next = element_frame.find_element(by=By.XPATH, value='//*[@id="reviewPaginate"]/div/a[13]') #다음 버튼 누르기
         element_next.click()
+        time.sleep(1)
         pass
         
 
