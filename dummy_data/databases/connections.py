@@ -15,16 +15,17 @@ from models.season_concept_info import season_concept_info
 from motor.motor_asyncio import AsyncIOMotorClient 
 from pydantic_settings import BaseSettings 
 from utils.paginations import Paginations
+
 class Settings(BaseSettings):                                                                                  
     DATABASE_URL: Optional[str] = None                                              
-    CONTAINER_PREFIX: Optional[str] = None 
+    CONTAINER_PREFIX: Optional[str] = None
+    openai_api_key: str 
     async def initialize_database(self):                                         
         client = AsyncIOMotorClient(self.DATABASE_URL)                             
         await init_beanie(database=client.get_default_database(),                  
                           document_models=[User_list,User_reserve_list,transfer_car_list, transfer_train_list,transfer_airport_list,transfer_bus_list, reco_trip_plan,reco_trip_add,tour_list, transfer_total_list,Reserve_dorm,Admin_notice_list,One_on_one_CS_list,Inquiry,FAQ_list,data_attraction, 
                                            data_concept_search, data_consume,data_consume_transition,data_trend_search, Trip_package_list,attraction_search_info,season_concept_info])
 
-        
     class Config:
         env_file = ".env"                                                
 
