@@ -14,7 +14,7 @@ mongoClient = MongoClient("mongodb://192.168.10.240:27017/")
 database = mongoClient["AI_LKJ"]
 collection = database['data_tour_pass_review_tmon']
 # collection.delete_many({})
-# Chrome 브라우저 옵션 생성
+# chrome 브라우저 옵션 생성
 chrome_options = Options()
 
 # User-Agent 설정
