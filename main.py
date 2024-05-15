@@ -13,7 +13,8 @@ import os
 import re
 
 # Models
-from models.plan_trip import Plane, Car, Train, ReserveDorm, ReserveTour
+from models.attraction_search_info import attraction_search_info
+from models.plan_trip import Bus, Plane, Car, Train, ReserveDorm, ReserveTour
 from models.admin_notice import Admin_notice_list
 from models.frequent_CS import FAQ_list
 from models.data_chart import data_attraction, data_concept_search, data_consume, data_consume_transition, data_trend_search
@@ -26,6 +27,7 @@ from routes.plan_trip import router as users_router
 from routes.consult import router as consult_router
 from routes.consult_api import router as consult_api_router
 from routes.plan_trip_api import router as plan_trip_api_router
+from routes.event_api import router as event_api_router
 from routes.event import router as event_router
 from routes.detailed_region import router as detailed_router
 
@@ -63,6 +65,7 @@ async def on_startup():
     await init_beanie(
         database,
         document_models=[
+            Bus,
             Plane,
             Car,
             Train,
@@ -76,6 +79,7 @@ async def on_startup():
             data_consume_transition,
             data_trend_search,
             User_list,
+            attraction_search_info
         ],
     )
 
@@ -90,6 +94,7 @@ app.include_router(users_router, prefix="/plan_trip")
 app.include_router(consult_router, prefix="/consult")
 app.include_router(consult_api_router, prefix="/consult_api")
 app.include_router(plan_trip_api_router, prefix="/plan_trip_api")
+app.include_router(event_api_router, prefix="/event_api")
 app.include_router(event_router, prefix="/event")
 app.include_router(detailed_router, prefix="/detailed_region")
 

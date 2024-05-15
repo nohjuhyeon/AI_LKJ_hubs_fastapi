@@ -2,6 +2,20 @@ from pydantic import BaseModel, Field
 from typing import Optional
 from beanie import Document
 
+# Bus Model
+class Bus(Document):
+    transfer_cate: str = "bus"
+    bus_departure: Optional[str] = None
+    bus_arrival: Optional[str] = None
+    bus_departure_time: Optional[str] = None
+    bus_direction: Optional[str] = None
+    charge_adult: Optional[str] = None
+    charge_child: Optional[str] = None
+    charge_youth: Optional[str] = None
+
+    class Settings:
+        name = "reserve_transfer_total"
+
 # Plane Model
 class Plane(Document):
     transfer_cate: str = "plane"
