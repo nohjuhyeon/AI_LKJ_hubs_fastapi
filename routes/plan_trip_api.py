@@ -1,32 +1,23 @@
-from typing import List, Dict
+from typing import List, Dict, Any
+from fastapi import APIRouter, HTTPException
 
-from beanie import PydanticObjectId
-from databases.connections import Database
-from fastapi import APIRouter, Depends, HTTPException, status
-from models.plan_trip import ReserveTransferTotal, ReserveDorm, ReserveTour
+# Models import
+from models.plan_trip import Plane, Car, Train
 
 router = APIRouter(
     tags=["Plantrip"]
 )
 
-collection_reserve_transfer_total = Database(ReserveTransferTotal)
-collection_reserve_dorm = Database(ReserveDorm)
-collection_reserve_tour = Database(ReserveTour)
-
 # reserve_transfer_total 데이터 조회
-@router.get("/Reserve_transfer_total", response_model=List[ReserveTransferTotal])
+@router.get("/Reserve_transfer_total", response_model=List[Dict[str, Any]])
 async def get_reserve_transfer_total():
-    reserve_transfer_total = await collection_reserve_transfer_total.get_all()
-    return reserve_transfer_total
+    try:
+        plane_data = await Plane.find_all().to_list()
+        car_data = await Car.find_all().to_list()
+        train_data = await Train.find_all().to_list()
 
-# reserve_dorm 데이터 조회
-@router.get("/Reserve_dorm", response_model=List[ReserveDorm])
-async def get_reserve_dorm():
-    reserve_dorm = await collection_reserve_dorm.get_all()
-    return reserve_dorm
-
-# reserve_tour 데이터 조회
-@router.get("/Reserve_tour", response_model=List[ReserveTour])
-async def get_reserve_tour():
-    reserve_tour = await collection_reserve_tour.get_all()
-    return reserve_tour
+        combined_data = plane_data + car_data + train_data
+        return combined_data
+    except Exception as e:
+        print(f"Error fetching data: {e}")
+        raise HTTPException(status_code=500, detail="Error fetching data")

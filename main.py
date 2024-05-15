@@ -13,7 +13,7 @@ import os
 import re
 
 # Models
-from models.plan_trip import ReserveTransferTotal, ReserveDorm, ReserveTour
+from models.plan_trip import Plane, Car, Train, ReserveDorm, ReserveTour
 from models.admin_notice import Admin_notice_list
 from models.frequent_CS import FAQ_list
 from models.data_chart import data_attraction, data_concept_search, data_consume, data_consume_transition, data_trend_search
@@ -63,7 +63,9 @@ async def on_startup():
     await init_beanie(
         database,
         document_models=[
-            ReserveTransferTotal,
+            Plane,
+            Car,
+            Train,
             ReserveDorm,
             ReserveTour,
             Admin_notice_list,
