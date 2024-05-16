@@ -45,4 +45,3 @@ async def get_data_chart():
         "data_consume_transition": data_consume_transition,
         "data_concept_search": data_concept_search,
     }
-
