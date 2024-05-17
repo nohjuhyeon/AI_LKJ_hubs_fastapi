@@ -19,11 +19,11 @@
 - 2차 프로젝트 발표 : 2024.05.23
 
 ### (2) 진행목록
-|분류|활동|날짜|담당자|진행 상황|
-|--|--|--|--|--|
-|Part 1|페르소나 정하기|4/18~4/23||완료|
-||페르소나 요소 정하기|4/19~4/20||완료|
-||페르소나 요소 데이터 수집하기|4/22~4/22||완료|
+|분류|활동|날짜|진행 상황|
+|--|--|--|--|
+|Part 1|페르소나 정하기|4/18~4/23|진행 중|
+||페르소나 요소 정하기|4/19~4/20|완료|
+||페르소나 요소 데이터 수집하기|4/22~4/22|완료|
 ||페르소나 정하기|4/23~4/23|완료|
 |Part 2|마케팅 방안 분석하기|||
 |||||
@@ -89,6 +89,13 @@ https://myungjun-kim.atlassian.net/jira/software/projects/ALH/boards/4/timeline
 ## - 참조 사이트
 |구분|목적|사이트명|
 |--|--|--|
-|데이터 수집 및 분석 자료|페르소나 설정|["국내여행 30∙40대 여성, 해외여행은 20대 남성이 주도"](https://www.newspim.com/news/view/20240130000971)|
-||페르소나 설정|[통계청](https://kosis.kr/statHtml/statHtml.do?orgId=113&tblId=DT_113_STBL_1029207&vw_cd=MT_ZTITLE&list_id=314_31401_013&scrId=&seqNo=&lang_mode=ko&obj_var_id=&itm_id=&conn_path=MT_ZTITLE&path=%252FstatisticsList%252FstatisticsListIndex.do)|
-|||
+|어플별 리뷰 긍부정 키워드 분석|여행 예약 어플을 이용한 고객 반응|[트립어드바이저](https://play.google.com/store/apps/details?id=com.tripadvisor.tripadvisor), [트리플](https://play.google.com/store/apps/details?id=com.titicacacorp.triple), [마이리얼트립](https://play.google.com/store/apps/details?id=com.mrt.ducati), [스카이스캐너](https://play.google.com/store/apps/details?id=net.skyscanner.android.main)|
+|유튜브 게시글 및 댓글 분석|여행 관련 관심 키워드|[#국내여행](https://www.youtube.com/results?search_query=%23%EA%B5%AD%EB%82%B4%EC%97%AC%ED%96%89&sp=CAM%253D), [Jay쌤여행TV](https://www.youtube.com/@JayTravelTV), [파파트래블](https://www.youtube.com/@papa1/videos), [일상이여행](https://www.youtube.com/@everyday_travel), [킴스트래블](https://www.youtube.com/@kimstravel), [여행브로셔](https://www.youtube.com/@travelbrochure/videos), [코비가](https://www.youtube.com/@korea_trip/videos), [여행크리에이터 모험가](https://www.youtube.com/@mwomga/videos), [여행자메이](https://www.youtube.com/@TravelerMay), [여락이들](https://www.youtube.com/@user-qj6hq4ue6e/search?query=%EA%B5%AD%EB%82%B4), [원지의 하루](https://www.youtube.com/@im1G/search?query=%EA%B5%AD%EB%82%B4), [여행자 제이](https://www.youtube.com/playlist?list=PLrz06nDEBDq5Gta-s1EHgTSJa05DoFdB1)|
+|투어 패스|사진 출처|[네이버 여행상품](https://pkgtour.naver.com/)|
+|투어 패스 선택 이유|연도별 패키지 여행 추세|[문화 빅데이터 포털](https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=b44da660-5892-11ec-8ee4-95f65f846b27)|
+|기존의 투어 패스에 대한 반응 분석|투어 패스 구매 후기|[네이버 쇼핑](https://search.shopping.naver.com/search/all?query=%ED%88%AC%EC%96%B4%ED%8C%A8%EC%8A%A4), [티몬](https://search.tmon.co.kr/search/?keyword=%ED%88%AC%EC%96%B4%ED%8C%A8%EC%8A%A4&thr=hs)|
+|페르소나 선정|문화체육관광부 ‘국민여행조사’|[통계청](https://kosis.kr/statHtml/statHtml.do?orgId=113&tblId=DT_113_STBL_1029207&vw_cd=MT_ZTITLE&list_id=314_31401_013&scrId=&seqNo=&lang_mode=ko&obj_var_id=&itm_id=&conn_path=MT_ZTITLE&path=%252FstatisticsList%252FstatisticsListIndex.do)|
+|페르소나 선정|컨슈머인사이트, 여행소비자 행태|[여행객 관련 뉴스](https://www.newspim.com/news/view/20240130000971)|
+|페르소나 대상 마케팅 분석|30,40대 여성의 검색량|[네이버 데이터 랩](https://datalab.naver.com/keyword/trendResult.naver?hashKey=N_81429a21c4da61246a8e167e7da0a6d6)|
+|페르소나 대상 마케팅 분석|인스타그램 게시글 및 댓글|[여행에 미치다](https://www.instagram.com/yeomi.travel/), [대한민국 구석구석](https://www.instagram.com/kto9suk9suk/)|
+
