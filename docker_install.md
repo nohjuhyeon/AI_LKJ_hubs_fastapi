@@ -1,3 +1,5 @@
+# mongodb
+
 1. docker 설치하기
 
 2. docker의 db_mongodb_7-1 들어가기
@@ -14,6 +16,7 @@ mongorestore --uri "mongodb://ai_ikj_third-db_mongodb_7-1:27017/AI_LKJ" --archiv
 * 만약에 mongo를 삭제하고 싶을 경우
 mongodump --uri "mongodb://ai_ikj_third-db_mongodb_7-1:27017/AI_LKJ" --archive=/home/initial_data.archive
 
+# mysql
 
 1. docker 설치하기
 
