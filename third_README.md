@@ -97,5 +97,8 @@ https://myungjun-kim.atlassian.net/jira/software/projects/ALH/boards/4/timeline
 |페르소나 선정|문화체육관광부 ‘국민여행조사’|[통계청](https://kosis.kr/statHtml/statHtml.do?orgId=113&tblId=DT_113_STBL_1029207&vw_cd=MT_ZTITLE&list_id=314_31401_013&scrId=&seqNo=&lang_mode=ko&obj_var_id=&itm_id=&conn_path=MT_ZTITLE&path=%252FstatisticsList%252FstatisticsListIndex.do)|
 |페르소나 선정|컨슈머인사이트, 여행소비자 행태|[여행객 관련 뉴스](https://www.newspim.com/news/view/20240130000971)|
 |페르소나 대상 마케팅 분석|30,40대 여성의 검색량|[네이버 데이터 랩](https://datalab.naver.com/keyword/trendResult.naver?hashKey=N_81429a21c4da61246a8e167e7da0a6d6)|
-|페르소나 대상 마케팅 분석|인스타그램 게시글 및 댓글|[여행에 미치다](https://www.instagram.com/yeomi.travel/), [대한민국 구석구석](https://www.instagram.com/kto9suk9suk/)|
-
+|페르소나 대상 마케팅 분석|인스타그램 게시글 및 댓글 키워드|[여행에 미치다](https://www.instagram.com/yeomi.travel/), [대한민국 구석구석](https://www.instagram.com/kto9suk9suk/)|
+|페르소나 대상 마케팅 분석|주요관광지점 입장객 통계|[관광지식정보시스템](https://know.tour.go.kr/stat/visitStatDis/table.do)|
+|페르소나 대상 마케팅 분석|2023년 식품소비행태조사|[한국농촌경제연구원](https://www.krei.re.kr/foodSurvey/selectBbsNttView.do?key=1774&bbsNo=451&nttNo=164083&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=)|
+|페르소나 대상 마케팅 분석|킨텍스 일정|[킨텍스](https://www.kintex.com/web/ko/event/clist.do)|
+|페르소나 대상 마케팅 분석|지역별 관광 현황|[한국관광 데이터랩](https://datalab.visitkorea.or.kr/datalab/portal/loc/getAreaDataForm.do#)|
