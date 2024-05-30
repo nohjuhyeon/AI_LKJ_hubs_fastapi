@@ -11,7 +11,7 @@
 ~$ df -h
 ~$ sudo systemctl status nginx
 ```
-
+    
 ### DNS management (need login) with extenal IP on vm instance GCP
 ```
 @https://dns.gabia.com/ > get Domain 
