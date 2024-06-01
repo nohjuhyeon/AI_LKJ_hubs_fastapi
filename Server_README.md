@@ -33,7 +33,7 @@
 ~$ sudo docker ps
 ~$ sudo docker exec -it teams_java_jupyterlab_mysql_springboot_3.1.1_fastapi_1 bash
 ```
-
+ 
 ### start fastapi server in docker
 ```
 ~# ps aux | grep uvicorn 
