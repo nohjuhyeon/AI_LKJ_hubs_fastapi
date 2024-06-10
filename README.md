@@ -59,8 +59,8 @@
 ||bootstrap|웹페이지 디자인 제작|
 |Programming|python|프로그램 코드 작성|
 ||java|프로그램 코드 작성|
-||Rest API||
-||Spring||
+||Rest API|클라이언트와 서버 간 통신을 위한 인터페이스 제공|
+||Spring Boot|Java 기반 웹 애플리케이션 개발을 위한 프레임워크|
 ||Jupyter|오픈소스 웹 애플리케이션|
 |Database|mongoDB|데이터베이스 저장 관리|
 ||RDB|데이터베이스 저장 관리|
