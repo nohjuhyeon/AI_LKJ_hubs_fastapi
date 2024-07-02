@@ -15,6 +15,9 @@ import re
 # Models
 from models.attraction_search_info import attraction_search_info
 from models.plan_trip import Bus, Plane, Car, Train, ReserveDorm, ReserveTour
+from models.reserve_transfer import transfer_car_list,transfer_train_list,transfer_bus_list,transfer_airport_list,tour_list, transfer_total_list
+from models.reserve_dorm import Reserve_dorm
+from models.tour_plan import reco_trip_plan,reco_trip_add
 from models.admin_notice import Admin_notice_list
 from models.frequent_CS import FAQ_list
 from models.data_chart import data_attraction, data_concept_search, data_consume, data_consume_transition, data_trend_search
@@ -79,7 +82,16 @@ async def on_startup():
             data_consume_transition,
             data_trend_search,
             User_list,
-            attraction_search_info
+            attraction_search_info,
+            transfer_car_list,
+            transfer_train_list,
+            transfer_bus_list,
+            transfer_airport_list,
+            tour_list, 
+            transfer_total_list,
+            reco_trip_plan,
+            reco_trip_add,
+            Reserve_dorm
         ],
     )
 

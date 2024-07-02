@@ -15,7 +15,7 @@
             <div class="row">
                 <h3 class="col">CONCEPT {{concept_list|length+1}} : 사용자 설정</h3>
                 <button class="btn btn-outline-primary col-md-3" style="height: 100%;" formaction="/plan_trip/trip_plan/"
-                    name="trip_concept" value="{{concept_list|length+1}}" method="">계획 짜러 가기</button>
+                    name="trip_concept" value= '상관없음' method="">계획 짜러 가기</button>
             </div>
         </div>
         <div class="container">
@@ -26,5 +26,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" name="arrive" value={{request._query_params.arrive}}>
+        <input type="hidden" name="datediff" value={{datediff}}>
     </form>
         {%endblock%}

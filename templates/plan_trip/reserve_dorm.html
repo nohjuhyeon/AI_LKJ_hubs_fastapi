@@ -32,7 +32,8 @@
             </select></div>
     </div>
     {%for dict_dorm in list_dorm%}
-    <div class="row align-items-stretch mb-3" style="border: 1px solid #555; border-radius: 15px; height: 70%; background-color: #ffffff;">
+    <div class="row align-items-stretch mb-3"
+        style="border: 1px solid #555; border-radius: 15px; height: 70%; background-color: #ffffff;">
         <div class="col-md-3" style="border-right: 1px solid #555;">
             <img src="{{dict_dorm.dorm_image}}" alt="Dorm Image" class="img-fluid" style="width: 100%; height: auto;">
         </div>
@@ -121,6 +122,13 @@
             <button type="submit" class=" list-group-item" style="top: 30% ;width: 100%">예약 리스트에 추가하기</button>
         </div>
     </div>
+    <input type="hidden" name="transfer" value={{request._query_params.transfer}}>
+    <input type="hidden" name="depart" value={{request._query_params.depart}}>
+    <input type="hidden" name="arrive" value={{request._query_params.arrive}}>
+    <input type="hidden" name="transfer_mem" value={{request._query_params.transfer_mem}}>
+    <input type="hidden" name="arrive_date" value={{request._query_params.arrive_date}}>
+    <input type="hidden" name="depart_date" value={{request._query_params.depart_date}}>
+
 </form>
 <script>
     var totalList = '{{ list_dorm}}';
@@ -130,16 +138,23 @@
     // itemList 요소를 가져옵니다.
     var itemList = document.getElementById("itemList");
     // deletebtn 버튼 클릭 이벤트 핸들러
-    function deleteListItem(event) {
-        // 클릭된 deletebtn 버튼의 부모 요소인 li 요소를 찾아서 삭제
-        var listItem = event.target.closest('.list-group-item');
-        listItem.remove();
-    }
 
     // deletebtn 버튼에 이벤트 핸들러 등록
     var deleteButtons = document.querySelectorAll('.btn-primary');
     deleteButtons.forEach(function (button) {
-        button.addEventListener('click', deleteListItem);
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            // 클릭된 deletebtn 버튼의 부모 요소인 li 요소를 찾아서 삭제
+            var listItem = event.target.closest('.list-group-item');
+            var clickedButton = event.target;
+            var value = clickedButton.value;
+            var index = added_items.indexOf(value); // values[4]의 인덱스를 찾음
+            if (index > -1) { // 인덱스가 유효한 경우
+                added_items.splice(index, 1); // 해당 인덱스에서 항목을 제거
+            }
+            listItem.remove();
+        });
     });
     for (var i = 1; i <= totalList.length; i++) {
         var buttonId = "addButton" + i;
@@ -188,6 +203,7 @@
             deleteButton.classList.add("btn");
             deleteButton.classList.add("btn-primary");
             deleteButton.textContent = "빼기";
+            deleteButton.value = values[4];
 
             var thirdrow_col2 = document.createElement("div");
             thirdrow_col2.classList.add("col-4");

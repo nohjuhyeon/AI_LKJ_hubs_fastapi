@@ -51,12 +51,12 @@
     <div class="row justify-content-center mt-5">
         <div class="col-6">
             <select class="form-control" name="transfer_cate">
-                <option value="" {{ 'selected' if request._query_params.transfer_cate=='' else '' }}>전체</option>
-                <option value="car" {{ 'selected' if request._query_params.transfer_cate=='bus' else '' }}>렌트카</option>
-                <option value="bus" {{ 'selected' if request._query_params.transfer_cate=='bus' else '' }}>버스</option>
-                <option value="plane" {{ 'selected' if request._query_params.transfer_cate=='plane' else '' }}>비행기
+                <option value="" {{ 'selected' if request._query_params.transfer=='' else '' }}>전체</option>
+                <option value="car" {{ 'selected' if request._query_params.transfer=='car' else '' }}>렌트카</option>
+                <option value="bus" {{ 'selected' if request._query_params.transfer=='bus' else '' }}>버스</option>
+                <option value="plane" {{ 'selected' if request._query_params.transfer=='plane' else '' }}>비행기
                 </option>
-                <option value="train" {{ 'selected' if request._query_params.transfer_cate=='train' else '' }}>기차
+                <option value="train" {{ 'selected' if request._query_params.transfer=='train' else '' }}>기차
                 </option>
             </select>
         </div>
@@ -80,6 +80,12 @@
                     <option value="4">가장 가까운 거리순</option>
                 </select></div>
         </div>
+        <input type="hidden" name="transfer" value={{request._query_params.transfer}}>
+        <input type="hidden" name="depart" value={{request._query_params.depart}}>
+        <input type="hidden" name="arrive" value={{request._query_params.arrive}}>
+        <input type="hidden" name="transfer_mem" value={{request._query_params.transfer_mem}}>
+        <input type="hidden" name="arrive_date" value={{request._query_params.arrive_date}}>
+        <input type="hidden" name="depart_date" value={{request._query_params.depart_date}}>
 </form>
 {%for dict_total in total_list%}
 {% if dict_total.transfer_cate == "plane" %}

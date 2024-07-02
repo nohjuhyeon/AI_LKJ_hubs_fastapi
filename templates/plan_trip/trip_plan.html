@@ -11,7 +11,7 @@
 <form>
     <div class="container row justify-content-between">
         <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary col-md-auto"
-            style="width: 40%; height: 100%;">
+            style="width: 40%; height: 500px;">
             <a href=""
                 class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
                 <svg class="bi pe-none me-2" width="30" height="24">
@@ -24,35 +24,45 @@
                     <div class="col">
                         <div class="scrollable-box-list">
                             <div class="list-group list-group-flush border-bottom scrollarea">
-                                {%for dict_tour in tour_list%}
-                                <a href="#" class="list-group-item list-group-item-action py-3 lh-sm list-group">
+                                {%for day_list in tour_list%}
+                                <a href="#" class="list-group-item list-group-item-action py-3 lh-sm list-group-item-primary">
                                     <div class="row justify-content-between">
                                         <div class="col-md-8">
-                                            <h3>{{dict_tour.day}}일차</h3>
+                                            <h3>{{loop.index}}일차</h3>
                                         </div>
                                         <div class="col-md-4 row justify-content-end">
-                                            <button class="btn btn-primary trip_plan_button col-md-8"
-                                                type="button">추가</button>
+                                            <!-- <button class="btn btn-primary trip_plan_button col-md-8"
+                                                type="button">추가</button> -->
                                         </div>
                                     </div>
-                                    {%for element_tour in dict_tour.tour_list%}
-                                    <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3"
+                                    {%for element_list in day_list%}
+                                    <a href="#"
+                                        class="list-group-item list-group-item-action d-flex flex-column gap-3 py-3"
                                         aria-current="true">
-                                        <div class="d-flex gap-2 w-100 justify-content-between">
-                                            <div class="col">{{element_tour}}</div>
-                                            <button class="btn btn-primary trip_plan_button col-md-2"
-                                                type="button">삭제</button>
+                                        <div class="d-flex flex-column gap-2 w-100">
+                                            <div class="row">
+                                                <h4 class="col-12">{{element_list.attraction}}</h4>
+                                            </div>
+                                            <!-- <div class="row">
+                                                <div class="col-12">{{element_list.region}}</div>
+                                            </div> -->
+                                            <div class="row">
+                                                <div class="col-12">{{element_list.info}}</div>
+                                            </div>
                                         </div>
+                                        <!-- <button class="btn btn-primary trip_plan_button col-md-2"
+                                            type="button">삭제</button> -->
                                     </a>
                                     {%endfor%}
-                                    {%endfor%}
+                                </a>
+                                {%endfor%}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="flex-column col-md-auto" style="width: 60%;">
+        <div class="flex-column col-md-auto" style="width: 60%;height: 500px;">
             <div id="map"></div>
         </div>
     </div>
@@ -64,7 +74,7 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-end">
+    <!-- <div class="row justify-content-end">
         <div class="col-3 position-fixed top-40 end-0 mb-3 ms-3 ml-3 bd-mode-toggl" style="top: 30% ;width: 20% ">
             <li class="list-group-item list-group-item-primary">여행갈 때 가져가면 좋은 상품</li>
             <div class="scrollable-box-list" style="height: 50%;">
@@ -75,37 +85,47 @@
                     </li>
                 </ul>
             </div>
-            <button type="submit" class=" list-group-item" formaction="/mypage/plan_list" style="top: 30% ;width: 100%">준비물 리스트에 추가하기</button>
+            <button type="submit" class=" list-group-item" formaction="/mypage/plan_list"
+                style="top: 30% ;width: 100%">준비물 리스트에 추가하기</button>
         </div>
-    </div>
+    </div> -->
 </form>
 
 <hr>
 <form class="d-flex mt-3 mt-lg-0" role="search">
     <input class="form-control me-2" type="search" placeholder="ex) 1일차 여행지 검색해줘" aria-label="Search">
     <button class="btn btn-outline-primary" type="submit">Search</button>
+    <input type="hidden" name="arrive" value={{request._query_params.arrive}}>
+    <input type="hidden" name="trip_concept" value={{request._query_params.trip_concept}}>
+    <input type="hidden" name="datediff" value={{request._query_params.datediff}}>
 </form>
 <div class="scrollable-box-search">
     <div class="list-group list-group-flush border-bottom scrollarea">
         {%for reco_add in reco_add_list%}
-        <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32"
-                class="rounded-circle flex-shrink-0">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-                <div>
-                    <h6 class="mb-0">{{reco_add.reco_list}}</h6>
+        <form action="">
+            <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32"
+                    class="rounded-circle flex-shrink-0">
+                <div class="d-flex gap-2 w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-0">{{reco_add.reco_list}}</h6>
+                    </div>
+                    <div class="row col-md-3">
+                        <select class="form-select col-md-8" name="trip_date" required>
+                            <option value="" disabled selected style="display: none;">추가할 날짜</option>
+                            {%for day_num in range(datediff)%}
+                            <option value={{day_num+1}}>{{day_num+1}}일차</option>
+                            {%endfor%}
+                        </select>
+                        <button class="btn btn-primary button-sm col-md-4">추가</button>
+                    </div>
                 </div>
-                <div class="row col-md-3">
-                    <select class="form-select col-md-8" name="transfer_mem" required>
-                        <option value="" disabled selected style="display: none;">추가할 날짜</option>
-                        {%for dict_tour in tour_list%}
-                        <option value={{dict_tour.day}}>{{dict_tour.day}}일차</option>
-                        {%endfor%}
-                    </select>
-                    <button class="btn btn-primary button-sm col-md-4"  type="submit">추가</button>
-                </div>
-            </div>
-        </a>
+            </a>
+            <input type="hidden" name="arrive" value={{request._query_params.arrive}}>
+            <input type="hidden" name="trip_concept" value={{request._query_params.trip_concept}}>
+            <input type="hidden" name="reco_list" value={{reco_add.reco_list}}>
+            <input type="hidden" name="datediff" value={{request._query_params.datediff}}>
+        </form>
         {%endfor%}
     </div>
 </div>
@@ -124,5 +144,6 @@
         });
 
     }
+
 </script>
 {%endblock%}

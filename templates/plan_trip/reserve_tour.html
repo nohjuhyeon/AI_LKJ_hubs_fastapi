@@ -114,6 +114,12 @@
             <button type="submit"  class=" list-group-item" style="top: 30% ;width: 100%">예약 리스트에 추가하기</button>
         </div>
     </div>
+    <input type="hidden" name="depart" value={{request._query_params.depart}}>
+    <input type="hidden" name="arrive" value={{request._query_params.arrive}}>
+    <input type="hidden" name="transfer_mem" value={{request._query_params.transfer_mem}}>
+    <input type="hidden" name="arrive_date" value={{request._query_params.arrive_date}}>
+    <input type="hidden" name="depart_date" value={{request._query_params.depart_date}}>
+
 </form>
 <script>
     var totalList = '{{tour_list|length}}';
@@ -123,6 +129,8 @@
     // itemList 요소를 가져옵니다.
     var itemList = document.getElementById("itemList");
     function deleteListItem(event) {
+        event.preventDefault();
+
         // 클릭된 deletebtn 버튼의 부모 요소인 li 요소를 찾아서 삭제
         var listItem = event.target.closest('.list-group-item');
         listItem.remove();
