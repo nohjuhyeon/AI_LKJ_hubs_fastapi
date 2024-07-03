@@ -1,23 +1,24 @@
 {% extends "template.html"%}
 {%block main_container%}
 <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
-    <form style="width: 80%;">
+    <form style="width: 80%;" method="post">
         {%for concept in concept_list%}
         <div class="container p-4 my-3 alert" style="border: 1px solid #007bff;border-radius: 10px; background-color: #ffffff;">
             <div class="row">
-                <h3 class="col">CONCEPT {{concept.concept_number}} : {{concept.concept_name}}</h3>
+                <h3 class="col">CONCEPT {{loop.index}} : {{concept}}</h3>
+                <input type="hidden" name="concept_list" value="{{ concept_list|join(',') }}">
                 <button class="btn btn-outline-primary col-md-3" style="height: 100%;" formaction="/plan_trip/trip_plan/"
-                    name="trip_concept" value={{concept.concept_number}} formmethod="">계획 짜러 가기</button>
+                    name="trip_concept" value={{loop.index}} formmethod="post">계획 짜러 가기</button>
             </div>
         </div>
         {%endfor%}
-        <div class="container p-4 my-3 alert" style="border: 1px solid #007bff;border-radius: 10px; background-color: #ffffff;">
+        <!-- <div class="container p-4 my-3 alert" style="border: 1px solid #007bff;border-radius: 10px; background-color: #ffffff;">
             <div class="row">
                 <h3 class="col">CONCEPT {{concept_list|length+1}} : 사용자 설정</h3>
                 <button class="btn btn-outline-primary col-md-3" style="height: 100%;" formaction="/plan_trip/trip_plan/"
                     name="trip_concept" value= '상관없음' method="">계획 짜러 가기</button>
             </div>
-        </div>
+        </div> -->
         <div class="container">
             <div class="row">
                 <div class="col text-right">
@@ -26,7 +27,8 @@
                 </div>
             </div>
         </div>
-        <input type="hidden" name="arrive" value={{request._query_params.arrive}}>
         <input type="hidden" name="datediff" value={{datediff}}>
+        <input type="hidden" name="arrive" value="{{ form_data['arrive'] }}">
+
     </form>
         {%endblock%}

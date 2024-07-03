@@ -1,20 +1,20 @@
 {% extends "template.html"%}
 {%block main_container%}
-<form action="">
+<form action="" method="post">
     <div class="row justify-content-center mt-5">
         <div class="col-6">
             <select class="form-control" name="dorm_cate">
-                <option value="" {{ 'selected' if request._query_params.dorm_cate=='' else '' }}>전체</option>
-                <option value="hotel" {{ 'selected' if request._query_params.dorm_cate=='hotel' else '' }}>호텔</option>
-                <option value="motel" {{ 'selected' if request._query_params.dorm_cate=='motel' else '' }}>모텔</option>
-                <option value="guest_house" {{ 'selected' if request._query_params.dorm_cate=='guest_house' else '' }}>
+                <option value="" {{ 'selected' if request.form().dorm_cate=='' else '' }}>전체</option>
+                <option value="hotel" {{ 'selected' if request.form().dorm_cate=='hotel' else '' }}>호텔</option>
+                <option value="motel" {{ 'selected' if request.form().dorm_cate=='motel' else '' }}>모텔</option>
+                <option value="guest_house" {{ 'selected' if request.form().dorm_cate=='guest_house' else '' }}>
                     게스트하우스
                 </option>
             </select>
         </div>
         <div class="col-1">
             <button type="submit" class="btn btn-primary" formaction="/plan_trip/reserve_dorm/"
-                formmethod="get">검색</button>
+                formmethod="post">검색</button>
         </div>
 
     </div>
@@ -49,7 +49,7 @@
                 <button id="addButton{{loop.index}}" formaction="/plan_trip/reserve_dorm/"
                     class="btn btn-primary col-md-3"
                     value="{{dict_dorm.dorm_name}}/{{dict_dorm.dorm_cate}}/{{dict_dorm.dorm_address}}/{{dict_dorm.dorm_price}}/{{dict_dorm.id}}"
-                    formmethod="get"> 가격 비교하기</button>
+                    formmethod="post"> 가격 비교하기</button>
             </div>
         </div>
     </div>
@@ -122,12 +122,12 @@
             <button type="submit" class=" list-group-item" style="top: 30% ;width: 100%">예약 리스트에 추가하기</button>
         </div>
     </div>
-    <input type="hidden" name="transfer" value={{request._query_params.transfer}}>
-    <input type="hidden" name="depart" value={{request._query_params.depart}}>
-    <input type="hidden" name="arrive" value={{request._query_params.arrive}}>
-    <input type="hidden" name="transfer_mem" value={{request._query_params.transfer_mem}}>
-    <input type="hidden" name="arrive_date" value={{request._query_params.arrive_date}}>
-    <input type="hidden" name="depart_date" value={{request._query_params.depart_date}}>
+    <input type="hidden" name="transfer" value="{{ form_data['transfer'] }}">
+    <input type="hidden" name="depart" value="{{ form_data['depart'] }}">
+    <input type="hidden" name="arrive" value="{{ form_data['arrive'] }}">
+    <input type="hidden" name="arrive_date" value="{{ form_data['arrive_date'] }}">
+    <input type="hidden" name="depart_date" value="{{ form_data['depart_date'] }}">
+    <input type="hidden" name="transfer_mem" value="{{ form_data['transfer_mem'] }}">
 
 </form>
 <script>

@@ -1,6 +1,6 @@
 {% extends "template.html"%}
 {%block main_container%}
-<form>
+<form method="post">
     <div class="row justify-content-center mt-5">
         <div class="col-6">
             <div class="list-group">
@@ -43,7 +43,7 @@
             <div class="row justify-content-end">
                 <div class="col-md-4 justify-content-end row">
                     <button id="addButton{{loop.index}}" formaction="/plan_trip/reserve_tour/" class="btn btn-primary"
-                        value="{{dict_tour.tour_name}}/{{dict_tour.tour_price}}/{{dict_tour.id}}" formmethod="get"> 가격
+                        value="{{dict_tour.tour_name}}/{{dict_tour.tour_price}}/{{dict_tour.id}}" formmethod="post"> 가격
                         비교하기</button>
                 </div>
             </div>
@@ -114,11 +114,11 @@
             <button type="submit"  class=" list-group-item" style="top: 30% ;width: 100%">예약 리스트에 추가하기</button>
         </div>
     </div>
-    <input type="hidden" name="depart" value={{request._query_params.depart}}>
-    <input type="hidden" name="arrive" value={{request._query_params.arrive}}>
-    <input type="hidden" name="transfer_mem" value={{request._query_params.transfer_mem}}>
-    <input type="hidden" name="arrive_date" value={{request._query_params.arrive_date}}>
-    <input type="hidden" name="depart_date" value={{request._query_params.depart_date}}>
+    <input type="hidden" name="depart" value="{{ form_data['depart'] }}">
+    <input type="hidden" name="arrive" value="{{ form_data['arrive'] }}">
+    <input type="hidden" name="arrive_date" value="{{ form_data['arrive_date'] }}">
+    <input type="hidden" name="depart_date" value="{{ form_data['depart_date'] }}">
+    <input type="hidden" name="transfer_mem" value="{{ form_data['transfer_mem'] }}">
 
 </form>
 <script>

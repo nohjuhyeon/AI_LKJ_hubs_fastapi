@@ -90,16 +90,17 @@
         </div>
     </div> -->
 </form>
-
+<!-- 
 <hr>
 <form class="d-flex mt-3 mt-lg-0" role="search">
     <input class="form-control me-2" type="search" placeholder="ex) 1일차 여행지 검색해줘" aria-label="Search">
     <button class="btn btn-outline-primary" type="submit">Search</button>
-    <input type="hidden" name="arrive" value={{request._query_params.arrive}}>
-    <input type="hidden" name="trip_concept" value={{request._query_params.trip_concept}}>
-    <input type="hidden" name="datediff" value={{request._query_params.datediff}}>
-</form>
-<div class="scrollable-box-search">
+    <input type="hidden" name="arrive" value="{{ form_data['arrive'] }}">
+    <input type="hidden" name="trip_concept" value="{{ form_data['trip_concept'] }}">
+    <input type="hidden" name="datediff" value="{{ form_data['datediff'] }}">    
+
+</form> -->
+<!-- <div class="scrollable-box-search">
     <div class="list-group list-group-flush border-bottom scrollarea">
         {%for reco_add in reco_add_list%}
         <form action="">
@@ -121,14 +122,14 @@
                     </div>
                 </div>
             </a>
-            <input type="hidden" name="arrive" value={{request._query_params.arrive}}>
-            <input type="hidden" name="trip_concept" value={{request._query_params.trip_concept}}>
-            <input type="hidden" name="reco_list" value={{reco_add.reco_list}}>
-            <input type="hidden" name="datediff" value={{request._query_params.datediff}}>
+            <input type="hidden" name="arrive" value="{{ form_data['arrive'] }}">
+            <input type="hidden" name="reco_list" value="{{ form_data['reco_list'] }}">
+            <input type="hidden" name="trip_concept" value="{{ form_data['trip_concept'] }}">
+            <input type="hidden" name="datediff" value="{{ form_data['datediff'] }}">    
         </form>
         {%endfor%}
     </div>
-</div>
+</div> -->
 <!-- Google Maps API Script -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQ_kYWZ4VVspJmtqALaf29ie60BAx2gYw&callback=initMap" async
     defer></script>
