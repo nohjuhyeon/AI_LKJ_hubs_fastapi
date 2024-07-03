@@ -308,16 +308,24 @@ async def list_post(request:Request):
     dict_answer = reco_tour(region,theme,datediff)
 
     tour_list =[]
+    list_region = []
+    list_attraction = []
     for i in range(3):
         try:
             for day in list(dict_answer.keys()):
                 day_list = []
+                day_region=[]
+                day_attraction = []
                 for i in dict_answer[day]:
                     dict_attraction = {}
                     dict_attraction['attraction'] = i.split(' : ')[0]
                     dict_attraction['region'] = i.split(' : ')[1]
                     dict_attraction['info'] = i.split(' : ')[2]
                     day_list.append(dict_attraction)
+                    day_region.append(i.split(' : ')[1])
+                    day_attraction.append(i.split(' : ')[0])
+                list_region.append(day_region)
+                list_attraction.append(day_attraction)
                 tour_list.append(day_list)
             break
         except:
@@ -329,6 +337,8 @@ async def list_post(request:Request):
         return templates.TemplateResponse(name="plan_trip/trip_plan.html", context={'request':request,
                                                                                 'tour_list': tour_list,
                                                                                 'form_data':form_data,
+                                                                                'list_region':list_region,
+                                                                                'list_attraction':list_attraction,
                                                                                 'reco_add_list': reco_add_list,'datediff':datediff})
     else:
         return templates.TemplateResponse(name="plan_trip/trip_plan_fail.html", context={'request':request,'form_data':form_data})
